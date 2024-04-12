@@ -21,8 +21,16 @@ starting angle, implementing collisions with the boundries of the course and eac
 for the user), stopping the animation when all of the squares have finished or only one remains, and asking the user if they
 wish to play again. 
 
-# Responsibility Plan
+## Responsibility Plan
 Harold will create the foundation for the code, outlining classes and the main objects of the program. Sebastian will 
 implement the courses/maps. From there, we will determine who will perform which specific duties based on our schedules and
 availability, but a large part of the coding will likely be done together. 
+
+## Sketch
+
+
+# UML Diagram
+
+
+
 
