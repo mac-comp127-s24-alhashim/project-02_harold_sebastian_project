@@ -1,5 +1,5 @@
 # Bouncing Squares
-By Sebastian Stefanowicz (sstefano@macalester.edu), Zander Leong (zleong@macalester.edu),Harold Ponce Saldivar (hponcesa@macalester.edu)
+By Sebastian Stefanowicz (sstefano@macalester.edu), Zander Leong (zleong@macalester.edu), Harold Ponce Saldivar (hponcesa@macalester.edu)
 02_harold_sebastian_project
 
 ## Description
