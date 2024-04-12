@@ -30,7 +30,7 @@ availability, but a large part of the coding will likely be done together.
 
 
 
-# UML Diagram
+## UML Diagram
 
 
 
