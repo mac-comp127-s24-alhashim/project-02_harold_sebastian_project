@@ -29,7 +29,7 @@ availability, but a large part of the coding will likely be done together.
 ## Sketch
 
 This low-fidelity prototype depicts the expected behavior of our Squares Game. Our first map is the race to the finish line,
-Our 2nd map/game mode is Square survival from the death zones, The last Square standing wins.
+Our second map/game mode is Square survival from the death zones, The last Square standing wins.
 
 ![IMG_2575 high quality](https://github.com/mac-comp127-s24-alhashim/project-02_harold_sebastian_project/assets/146163469/f8a1bdd2-0036-47e9-b412-6ed54a5ff1e3)
 ![IMG_2576 high quality](https://github.com/mac-comp127-s24-alhashim/project-02_harold_sebastian_project/assets/146163469/30e0c41f-b3fc-4531-94a8-774ee956fe49)
