@@ -37,6 +37,10 @@ This low-fidelity prototype depicts the expected behavior of our Squares Game. O
 
 ## UML Diagram
 
+This UML Diagram illustrates the basic structure of classes and methods in our program. As we continue to develop our project, this structure will likely change while we experiment, test, and improve our code.
+
+![A UML diagram displaying classes of the program with their attributes and methods. For full text, please contact the project creators.](https://github.com/mac-comp127-s24-alhashim/project-02_harold_sebastian_project/assets/144387490/510d945f-b50a-484d-b55b-4fb0ed877cb4)
+
 
 
 
