@@ -16,8 +16,8 @@ public class Square {
 
     public Square(double x, double y, int sideLength) {
         square = new Rectangle(x, y, sideLength, sideLength);
-        speedX = 2; // Initial speed
-        speedY = 2;
+        speedX = 3; // Initial speed
+        speedY = 3;
         square.setFillColor(Color.RED);
     }
     

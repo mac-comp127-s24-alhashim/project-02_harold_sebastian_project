@@ -11,7 +11,7 @@ public class SquareGame {
     private static Map map;
     private Wall wall;
     public static double squareX = 75;
-    public static double squareY = 75;
+    public static double squareY = 725;
 
 
     public SquareGame() {
