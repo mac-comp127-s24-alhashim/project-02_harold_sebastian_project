@@ -16,14 +16,22 @@ public class Map {
     public Map() {}
 
     public static void walls(CanvasWindow canvas) {
-        Rectangle wall = new Rectangle(47.5, 47.5, 5, 100);
+        Rectangle wall = new Rectangle(47.5, 47.5, 5, 200);
         wall.setStrokeColor(Color.black);
         wall.setFillColor(Color.black);
         walls.add(wall);
-        Rectangle wall2 = new Rectangle(47.5, 147.5, 200, 5);
+        Rectangle wall2 = new Rectangle(47.5, 47.5, 200, 5);
         wall2.setStrokeColor(Color.black);
         wall2.setFillColor(Color.black);
         walls.add(wall2);
+        Rectangle wall3 = new Rectangle(247.5, 47.5, 5, 200);
+        wall3.setStrokeColor(Color.black);
+        wall3.setFillColor(Color.black);
+        walls.add(wall3);
+        Rectangle wall4 = new Rectangle(47.5, 147.5, 200, 5);
+        wall4.setStrokeColor(Color.black);
+        wall4.setFillColor(Color.black);
+        walls.add(wall4);
         // Line wall = new Line(50,50,550,50);
         // wall.setStrokeColor(Color.black);
         // wall.setStrokeWidth(4);

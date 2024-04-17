@@ -6,8 +6,6 @@ import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Line;
 import edu.macalester.graphics.Rectangle;
-import java.util.Iterator;
-
 
 public class Square {
     private Rectangle square;
@@ -49,15 +47,15 @@ public class Square {
         double squareY = square.getY();
         int squareSize = square.getSideLength();
 
-        double top = squareY - 0.25;
-        double bottom = squareY + squareSize + .25;
-        double left = squareX - .25;
-        double right = squareX + squareSize + .25;
+        double top = squareY - 5;
+        double bottom = squareY + squareSize + 5;
+        double left = squareX - 5;
+        double right = squareX + squareSize + 5;
 
-        Line leftLine = (Line) Map.walls.getElementAt(left, squareY + squareSize * .5);
-        Line rightLine = (Line) Map.walls.getElementAt(right, squareY + squareSize * .5);
-        Line topLine = (Line) Map.walls.getElementAt(squareX + squareSize * .5, top);
-        Line bottomLine = (Line) Map.walls.getElementAt(squareX + squareSize * .5, bottom);
+        Rectangle leftLine = (Rectangle) Map.walls.getElementAt(left, squareY + squareSize * .5);
+        Rectangle rightLine = (Rectangle) Map.walls.getElementAt(right, squareY + squareSize * .5);
+        Rectangle topLine = (Rectangle) Map.walls.getElementAt(squareX + squareSize * .5, top);
+        Rectangle bottomLine = (Rectangle) Map.walls.getElementAt(squareX + squareSize * .5, bottom);
 
         if (leftLine != null || rightLine != null || topLine != null || bottomLine != null) {
             if (leftLine != null || rightLine != null) {
