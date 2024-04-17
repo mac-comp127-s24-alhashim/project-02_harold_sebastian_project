@@ -47,10 +47,10 @@ public class Square {
         double squareY = square.getY();
         int squareSize = square.getSideLength();
 
-        double top = squareY - 5;
-        double bottom = squareY + squareSize + 5;
-        double left = squareX - 5;
-        double right = squareX + squareSize + 5;
+        double top = squareY - 7.5;
+        double bottom = squareY + squareSize + 7.5;
+        double left = squareX - 7.5;
+        double right = squareX + squareSize + 7.5;
 
         Rectangle leftLine = (Rectangle) Map.walls.getElementAt(left, squareY + squareSize * .5);
         Rectangle rightLine = (Rectangle) Map.walls.getElementAt(right, squareY + squareSize * .5);
@@ -64,6 +64,20 @@ public class Square {
             if (topLine != null || bottomLine != null) {
                 square.speedY = -1 * square.speedY;
             }
+        }
+    }
+
+    public void testFinish(Square square, CanvasWindow canvas) {
+        double squareX = square.getX();
+        double squareY = square.getY();
+        int squareSize = square.getSideLength();
+
+        double left = squareX - 15;
+
+        Rectangle zone = (Rectangle) Map.endZone.getElementAt(left, squareY + squareSize * .5);
+
+        if (zone != null) {
+            SquareGame.finishBoolean = false;
         }
     }
 

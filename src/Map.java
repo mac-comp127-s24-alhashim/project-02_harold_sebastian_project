@@ -12,6 +12,8 @@ import edu.macalester.graphics.Rectangle;
 public class Map {
     public Wall wall;
     public static GraphicsGroup walls = new GraphicsGroup();
+    public static GraphicsGroup finishLine = new GraphicsGroup();
+    public static GraphicsGroup endZone = new GraphicsGroup();
 
     public Map() {}
 
@@ -88,6 +90,20 @@ public class Map {
         wall18.setStrokeColor(Color.black);
         wall18.setFillColor(Color.black);
         walls.add(wall18);
+    }
+
+    public static void addFinish(CanvasWindow canvas) {
+        Rectangle finish = new Rectangle(422.5, 53.5, 5, 158);
+        finish.setStrokeColor(Color.red);
+        finish.setFillColor(Color.red);
+        finishLine.add(finish);
+    }
+
+    public static void addEndZone(CanvasWindow canvas) {
+        Rectangle zone = new Rectangle(427.5, 53.5, 120, 158);
+        zone.setStrokeColor(Color.green);
+        zone.setFillColor(Color.green);
+        endZone.add(zone);
     }
 }
 
