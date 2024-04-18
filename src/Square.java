@@ -1,7 +1,9 @@
 
 import java.awt.Color;
+import java.util.Random;
 
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.Fillable;
 import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Line;
@@ -9,16 +11,22 @@ import edu.macalester.graphics.Rectangle;
 
 public class Square {
     private Rectangle square;
+    private double totalSpeed = 2;
     private double speedX;
     private double speedY;
     private int sideLength; // Side length of the square
+    boolean finished = false;
+    private boolean hasCollided = false;
 
 
     public Square(double x, double y, int sideLength) {
         square = new Rectangle(x, y, sideLength, sideLength);
-        speedX = 3; // Initial speed
-        speedY = 3;
-        square.setFillColor(Color.RED);
+
+        Random rand = new Random();
+        speedX = 1 + (rand.nextDouble() * totalSpeed) / 2;
+        speedY = 1 + (Math.sqrt(totalSpeed * totalSpeed - speedX * speedX)) / 2;
+
+        finished = false;
     }
     
     public Rectangle getSquare() {
@@ -47,10 +55,10 @@ public class Square {
         double squareY = square.getY();
         int squareSize = square.getSideLength();
 
-        double top = squareY - 7.5;
-        double bottom = squareY + squareSize + 7.5;
-        double left = squareX - 7.5;
-        double right = squareX + squareSize + 7.5;
+        double top = squareY - 10;
+        double bottom = squareY + squareSize + 10;
+        double left = squareX - 10;
+        double right = squareX + squareSize + 10;
 
         Rectangle leftLine = (Rectangle) Map.walls.getElementAt(left, squareY + squareSize * .5);
         Rectangle rightLine = (Rectangle) Map.walls.getElementAt(right, squareY + squareSize * .5);
@@ -67,6 +75,33 @@ public class Square {
         }
     }
 
+    // public void testTouchingSquare(Square square, GraphicsGroup squareGroup, CanvasWindow canvas) {
+    //     double squareX = square.getX();
+    //     double squareY = square.getY();
+    //     int squareSize = square.getSideLength();
+
+    //     double top = squareY - 7.5;
+    //     double bottom = squareY + squareSize + 7.5;
+    //     double left = squareX - 7.5;
+    //     double right = squareX + squareSize + 7.5;
+
+    //     Rectangle leftLine = (Rectangle) squareGroup.getElementAt(left, squareY + squareSize * .5);
+    //     Rectangle rightLine = (Rectangle) squareGroup.getElementAt(right, squareY + squareSize * .5);
+    //     Rectangle topLine = (Rectangle) squareGroup.getElementAt(squareX + squareSize * .5, top);
+    //     Rectangle bottomLine = (Rectangle) squareGroup.getElementAt(squareX + squareSize * .5, bottom);
+    //     if (hasCollided == false) {
+    //         if (leftLine != null || rightLine != null || topLine != null || bottomLine != null) {
+    //             if (leftLine != null || rightLine != null) {
+    //                 square.speedX = -1 * square.speedX;
+    //             }
+    //             if (topLine != null || bottomLine != null) {
+    //                 square.speedY = -1 * square.speedY;
+    //             }
+    //         }
+    //         hasCollided = true;
+    //     }
+    // }
+
     public void testFinish(Square square, CanvasWindow canvas) {
         double squareX = square.getX();
         double squareY = square.getY();
@@ -77,8 +112,11 @@ public class Square {
         Rectangle zone = (Rectangle) Map.endZone.getElementAt(left, squareY + squareSize * .5);
 
         if (zone != null) {
-            SquareGame.finishBoolean = false;
+            finished = true;
         }
     }
 
+    public void setSquareColor(Color color) {
+        square.setFillColor(color);
+    }
 }

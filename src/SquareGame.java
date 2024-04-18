@@ -1,20 +1,22 @@
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Line;
-import edu.macalester.graphics.Rectangle;
+import edu.macalester.graphics.GraphicsGroup;
 
 public class SquareGame {
     private static final int CANVAS_WIDTH = 600;
     private static final int CANVAS_HEIGHT = 800;
     private static CanvasWindow canvas;
     private static Square square;
+    private static Square square2;
     private static Map map;
-    private Wall wall;
-    public static double squareX = 75;
-    public static double squareY = 725;
-    public static boolean finishBoolean = true;
+    private static boolean allFinished = true;
+    private static List<Square> squares = new ArrayList<>();;
+    public static GraphicsGroup squareGroup = new GraphicsGroup();
 
 
     public SquareGame() {
@@ -30,26 +32,39 @@ public class SquareGame {
         Map.addEndZone(canvas);
         canvas.add(Map.endZone);
 
-        square = new Square(squareX, squareY, 20);
-        canvas.add(square.getSquare());
+        square = new Square(75, 725, 20);
+        square2 = new Square(75, 675, 20);
+
+        square.setSquareColor(Color.BLUE);
+        square2.setSquareColor(Color.CYAN);
+
+        squareGroup.add(square.getSquare());
+        squareGroup.add(square2.getSquare());
+        canvas.add(squareGroup);
+
+        squares.add(square);
+        squares.add(square2);
     }
 
     public static void main(String[] args) {
         new SquareGame();
 
         canvas.animate(() -> {
-
-            if (finishBoolean) {
-
-                square.move();
-
-                square.testTouchingWall(square, canvas);
-
-                // square.testTouchingSquare();
-                square.testFinish(square, canvas);
-
+            if (allFinished) {
+                Iterator<Square> iterator = squares.iterator();
+                while (iterator.hasNext()) {
+                    Square square = iterator.next();
+                    if (square.finished == false) {
+                        square.move();
+                        square.testTouchingWall(square, canvas);
+                        //square.testTouchingSquare(square, squareGroup, canvas);
+                        square.testFinish(square, canvas);
+                        if (square.finished == true) {
+                            iterator.remove();
+                        }
+                    }
+                }
             }
         });
     }
-
 }

@@ -1,10 +1,7 @@
 import java.awt.Color;
-import java.util.ArrayList;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
-import edu.macalester.graphics.GraphicsObject;
-import edu.macalester.graphics.Line;
 import edu.macalester.graphics.Rectangle;
 
 
@@ -58,11 +55,11 @@ public class Map {
         wall10.setStrokeColor(Color.black);
         wall10.setFillColor(Color.black);
         walls.add(wall10);
-        Rectangle wall11 = new Rectangle(472.5, 402.5, 75, 5);
+        Rectangle wall11 = new Rectangle(472.5, 397.5, 80, 5);
         wall11.setStrokeColor(Color.black);
         wall11.setFillColor(Color.black);
         walls.add(wall11);
-        Rectangle wall12 = new Rectangle(472.5, 327.5, 5, 75);
+        Rectangle wall12 = new Rectangle(472.5, 327.5, 5, 70);
         wall12.setStrokeColor(Color.black);
         wall12.setFillColor(Color.black);
         walls.add(wall12);
