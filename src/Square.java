@@ -1,17 +1,15 @@
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Fillable;
-import edu.macalester.graphics.GraphicsObject;
-import edu.macalester.graphics.GraphicsGroup;
-import edu.macalester.graphics.Line;
 import edu.macalester.graphics.Rectangle;
 
 public class Square {
     private Rectangle square;
-    private double totalSpeed = 2;
+    private double totalSpeed = 3;
     private double speedX;
     private double speedY;
     private int sideLength; // Side length of the square
@@ -21,6 +19,8 @@ public class Square {
 
     public Square(double x, double y, int sideLength) {
         square = new Rectangle(x, y, sideLength, sideLength);
+        List<Square> squares = new ArrayList<>();
+
 
         Random rand = new Random();
         speedX = 1 + (rand.nextDouble() * totalSpeed) / 2;
@@ -43,6 +43,15 @@ public class Square {
 
     public int getSideLength() {
         return sideLength;
+    }
+
+    private double getHeight() {
+        return square.getHeight();
+    }
+
+private double getWidth() {
+    return square.getHeight();
+
     }
 
     public void move() {
@@ -73,34 +82,49 @@ public class Square {
                 square.speedY = -1 * square.speedY;
             }
         }
-    }
 
-    // public void testTouchingSquare(Square square, GraphicsGroup squareGroup, CanvasWindow canvas) {
-    //     double squareX = square.getX();
-    //     double squareY = square.getY();
-    //     int squareSize = square.getSideLength();
-
-    //     double top = squareY - 7.5;
-    //     double bottom = squareY + squareSize + 7.5;
-    //     double left = squareX - 7.5;
-    //     double right = squareX + squareSize + 7.5;
-
-    //     Rectangle leftLine = (Rectangle) squareGroup.getElementAt(left, squareY + squareSize * .5);
-    //     Rectangle rightLine = (Rectangle) squareGroup.getElementAt(right, squareY + squareSize * .5);
-    //     Rectangle topLine = (Rectangle) squareGroup.getElementAt(squareX + squareSize * .5, top);
-    //     Rectangle bottomLine = (Rectangle) squareGroup.getElementAt(squareX + squareSize * .5, bottom);
-    //     if (hasCollided == false) {
-    //         if (leftLine != null || rightLine != null || topLine != null || bottomLine != null) {
-    //             if (leftLine != null || rightLine != null) {
-    //                 square.speedX = -1 * square.speedX;
-    //             }
-    //             if (topLine != null || bottomLine != null) {
-    //                 square.speedY = -1 * square.speedY;
-    //             }
-    //         }
-    //         hasCollided = true;
-    //     }
-    // }
+        }
+        
+        public void testTouchingSquare(List<Square> squares, CanvasWindow canvas) {
+            double squareX = square.getX();
+            double squareY = square.getY();
+            double squareWidth = square.getWidth();
+            double squareHeight = square.getHeight();
+        
+            double top = squareY - 7.5;
+            double bottom = squareY + squareHeight + 7.5;
+            double left = squareX - 7.5;
+            double right = squareX + squareWidth + 7.5;
+        
+            for (Square otherSquare : squares) {
+                if (otherSquare != this) {
+                    double otherSquareX = otherSquare.getX();
+                    double otherSquareY = otherSquare.getY();
+                    double otherSquareWidth = otherSquare.getWidth();
+                    double otherSquareHeight = otherSquare.getHeight();
+        
+                    // Calculate boundaries of the other square
+                    double otherSquareTop = otherSquareY - otherSquareHeight / 2;
+                    double otherSquareBottom = otherSquareY + otherSquareHeight / 2;
+                    double otherSquareLeft = otherSquareX - otherSquareWidth / 2;
+                    double otherSquareRight = otherSquareX + otherSquareWidth / 2;
+        
+                    // System.out.println("Square: " + squareX + ", " + squareY + ", " + squareWidth + ", " + squareHeight);
+                    // System.out.println("Other Square: " + otherSquareX + ", " + otherSquareY + ", " + otherSquareWidth + ", " + otherSquareHeight);
+                    // System.out.println("Boundaries: left=" + left + ", right=" + right + ", top=" + top + ", bottom=" + bottom);
+                    // System.out.println("Other Boundaries: left=" + otherSquareLeft + ", right=" + otherSquareRight + ", top=" + otherSquareTop + ", bottom=" + otherSquareBottom);
+        
+                    // Check for intersection
+                    if (right >= otherSquareLeft && left <= otherSquareRight && bottom >= otherSquareTop && top <= otherSquareBottom) {
+                        // Collision detected
+                        System.out.println("Collision detected between squares!");
+                        speedX = -speedX;
+                        speedY = -speedY;
+                        break; // Exit the loop after detecting one collision
+                    }
+                }
+            }
+        }
 
     public void testFinish(Square square, CanvasWindow canvas) {
         double squareX = square.getX();
