@@ -9,7 +9,7 @@ import edu.macalester.graphics.Rectangle;
 
 public class Square {
     private Rectangle square;
-    private double totalSpeed = 3;
+    private double totalSpeed = 2;
     private double speedX;
     private double speedY;
     private int sideLength; // Side length of the square
@@ -103,11 +103,11 @@ private double getWidth() {
                     double otherSquareWidth = otherSquare.getWidth();
                     double otherSquareHeight = otherSquare.getHeight();
         
-                    // Calculate boundaries of the other square
-                    double otherSquareTop = otherSquareY - otherSquareHeight / 2;
-                    double otherSquareBottom = otherSquareY + otherSquareHeight / 2;
-                    double otherSquareLeft = otherSquareX - otherSquareWidth / 2;
-                    double otherSquareRight = otherSquareX + otherSquareWidth / 2;
+                    // Calculate boundaries of the other squares
+                    double otherSquareTop = otherSquareY - otherSquareHeight / 4;
+                    double otherSquareBottom = otherSquareY + otherSquareHeight / 4;
+                    double otherSquareLeft = otherSquareX - otherSquareWidth / 4;
+                    double otherSquareRight = otherSquareX + otherSquareWidth / 4;
         
                     // System.out.println("Square: " + squareX + ", " + squareY + ", " + squareWidth + ", " + squareHeight);
                     // System.out.println("Other Square: " + otherSquareX + ", " + otherSquareY + ", " + otherSquareWidth + ", " + otherSquareHeight);
@@ -116,10 +116,10 @@ private double getWidth() {
         
                     // Check for intersection
                     if (right >= otherSquareLeft && left <= otherSquareRight && bottom >= otherSquareTop && top <= otherSquareBottom) {
-                        // Collision detected
-                        System.out.println("Collision detected between squares!");
-                        speedX = -speedX;
-                        speedY = -speedY;
+                        // testing Collision detection
+                        //System.out.println("Collision detected between squares!");
+                        speedX = -speedX * 1;
+                        speedY = -speedY * 1;
                         break; // Exit the loop after detecting one collision
                     }
                 }
