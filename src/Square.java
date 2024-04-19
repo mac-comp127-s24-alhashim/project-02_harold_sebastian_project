@@ -8,6 +8,7 @@ import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Line;
 import edu.macalester.graphics.Rectangle;
+import edu.macalester.graphics.Point;
 
 public class Square {
     private Rectangle square;
@@ -19,7 +20,7 @@ public class Square {
     private boolean hasCollided = false;
 
 
-    public Square(double x, double y, int sideLength) {
+    public Square (double x, double y, int sideLength) {
         square = new Rectangle(x, y, sideLength, sideLength);
 
         Random rand = new Random();
@@ -43,6 +44,14 @@ public class Square {
 
     public int getSideLength() {
         return sideLength;
+    }
+
+    public Point getCenter() {
+        return square.getCenter();
+    }
+
+    public Point getPosition() {
+        return square.getPosition();
     }
 
     public void move() {
@@ -75,32 +84,38 @@ public class Square {
         }
     }
 
-    // public void testTouchingSquare(Square square, GraphicsGroup squareGroup, CanvasWindow canvas) {
-    //     double squareX = square.getX();
-    //     double squareY = square.getY();
-    //     int squareSize = square.getSideLength();
+    public void testTouchingSquare(Square square, GraphicsGroup squareGroup, CanvasWindow canvas) {
+        double squareX = square.getX();
+        double squareY = square.getY();
+        int squareSize = square.getSideLength();
 
-    //     double top = squareY - 7.5;
-    //     double bottom = squareY + squareSize + 7.5;
-    //     double left = squareX - 7.5;
-    //     double right = squareX + squareSize + 7.5;
+        double top = squareY - 7.5;
+        double bottom = squareY + squareSize + 7.5;
+        double left = squareX - 7.5;
+        double right = squareX + squareSize + 7.5;
 
-    //     Rectangle leftLine = (Rectangle) squareGroup.getElementAt(left, squareY + squareSize * .5);
-    //     Rectangle rightLine = (Rectangle) squareGroup.getElementAt(right, squareY + squareSize * .5);
-    //     Rectangle topLine = (Rectangle) squareGroup.getElementAt(squareX + squareSize * .5, top);
-    //     Rectangle bottomLine = (Rectangle) squareGroup.getElementAt(squareX + squareSize * .5, bottom);
-    //     if (hasCollided == false) {
-    //         if (leftLine != null || rightLine != null || topLine != null || bottomLine != null) {
-    //             if (leftLine != null || rightLine != null) {
-    //                 square.speedX = -1 * square.speedX;
-    //             }
-    //             if (topLine != null || bottomLine != null) {
-    //                 square.speedY = -1 * square.speedY;
-    //             }
-    //         }
-    //         hasCollided = true;
-    //     }
-    // }
+        Rectangle leftLine = (Rectangle) squareGroup.getElementAt(left, squareY + squareSize * .5);
+        Rectangle rightLine = (Rectangle) squareGroup.getElementAt(right, squareY + squareSize * .5);
+        Rectangle topLine = (Rectangle) squareGroup.getElementAt(squareX + squareSize * .5, top);
+        Rectangle bottomLine = (Rectangle) squareGroup.getElementAt(squareX + squareSize * .5, bottom);
+        
+        //if (hasCollided == false) {
+            if ((leftLine != null && leftLine.getX() + 10 != squareX) || (rightLine != null && rightLine.getX() + 10 != squareX) || (topLine != null && topLine.getX() + 10 != squareX) || (bottomLine != null && bottomLine.getX() + 10 != squareX)) {
+                
+                //if(leftLine.getX() + 10 != squareX && rightLine.getX() + 10 != squareX && topLine.getX() + 10 != squareX && bottomLine.getX() + 10 != squareX){
+                    if ((leftLine != null && leftLine.getX() + 10 != squareX) || (rightLine != null && rightLine.getX() + 10 != squareX)) {
+                        System.out.println(square + " x");
+                        square.speedX = -1 * square.speedX;
+                    }
+                    if ((topLine != null && topLine.getX() + 10 != squareX) || (bottomLine != null && bottomLine.getX() + 10 != squareX)) {
+                        System.out.println(square + " y");
+                        square.speedY = -1 * square.speedY;
+                    }
+                //}
+            }
+            //hasCollided = true;
+        }
+    //}
 
     public void testFinish(Square square, CanvasWindow canvas) {
         double squareX = square.getX();

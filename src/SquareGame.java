@@ -57,7 +57,7 @@ public class SquareGame {
                     if (square.finished == false) {
                         square.move();
                         square.testTouchingWall(square, canvas);
-                        //square.testTouchingSquare(square, squareGroup, canvas);
+                        square.testTouchingSquare(square, squareGroup, canvas);
                         square.testFinish(square, canvas);
                         if (square.finished == true) {
                             iterator.remove();
