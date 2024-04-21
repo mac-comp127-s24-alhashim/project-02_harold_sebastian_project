@@ -27,7 +27,7 @@ public class SquareGame {
 
     public SquareGame() {
         canvas = new CanvasWindow("Squares Survival!!!", CANVAS_WIDTH, CANVAS_HEIGHT);
-        canvas.setBackground(Color.LIGHT_GRAY);
+        //canvas.setBackground(Color.LIGHT_GRAY);
 
         Map.walls(canvas);
         canvas.add(Map.walls);
@@ -81,7 +81,7 @@ public class SquareGame {
                         menu.removeFromCanvas();
                         square.move();
                         square.testTouchingWall(square, canvas);
-                        square.testTouchingSquare(squares, canvas);
+                        //square.testTouchingSquare(squares, canvas);
                         square.testFinish(square, canvas);
                         if (square.finished) {
                             iterator.remove();
