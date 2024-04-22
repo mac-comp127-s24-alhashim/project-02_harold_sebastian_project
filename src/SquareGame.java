@@ -81,7 +81,7 @@ public class SquareGame {
                         menu.removeFromCanvas();
                         square.move();
                         square.testTouchingWall(square, canvas);
-                        //square.testTouchingSquare(squares, canvas);
+                        square.testTouchingSquare(squares, canvas);
                         square.testFinish(square, canvas);
                         if (square.finished) {
                             iterator.remove();
