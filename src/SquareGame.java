@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import edu.macalester.graphics.CanvasWindow;
@@ -98,7 +99,9 @@ public class SquareGame {
             }
             System.out.println("Number of squares: " + squares.size());
             if (allFinished) {
-                for (Square square : squares)
+                Iterator<Square> iterator = squares.iterator();
+                while (iterator.hasNext()) {
+                    Square square = iterator.next();
                     if (!square.finished) {
                         square.move();
                         Map currentMap = null;
@@ -109,13 +112,14 @@ public class SquareGame {
                             currentMap = map2;
                         }
                         square.testTouchingWall(square, canvas, currentMap);
-                        //square.testTouchingSquare(squares, canvas);
+                        square.testTouchingSquare(squares, canvas);
                         square.testFinish(square, canvas, currentMap);
                         if (square.finished) {
-                            squares.remove(square);
+                            iterator.remove();;
                         }
                     }
                 }
+            }
                 // // Check if all squares are finished
                 // if (squares.isEmpty()) {
                 //     // If all squares have finished, show the restart button
