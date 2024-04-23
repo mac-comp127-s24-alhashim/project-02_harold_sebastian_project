@@ -1,6 +1,5 @@
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -19,8 +18,6 @@ public class Square {
 
     public Square(double x, double y, int sideLength) {
         square = new Rectangle(x, y, sideLength, sideLength);
-        List<Square> squares = new ArrayList<>();
-
 
         Random rand = new Random();
         speedX = 1 + (rand.nextDouble() * totalSpeed) / 2;
@@ -49,9 +46,8 @@ public class Square {
         return square.getHeight();
     }
 
-private double getWidth() {
-    return square.getHeight();
-
+    private double getWidth() {
+        return square.getHeight();
     }
 
     public void move() {
@@ -59,7 +55,7 @@ private double getWidth() {
         square.setPosition(square.getX() + speedX, square.getY() + speedY);
     }
 
-    public void testTouchingWall(Square square, CanvasWindow canvas) {
+    public void testTouchingWall(Square square, CanvasWindow canvas, Map map) {
         double squareX = square.getX();
         double squareY = square.getY();
         int squareSize = square.getSideLength();
@@ -69,10 +65,10 @@ private double getWidth() {
         double left = squareX - 10;
         double right = squareX + squareSize + 10;
 
-        Rectangle leftLine = (Rectangle) Map.walls.getElementAt(left, squareY + squareSize * .5);
-        Rectangle rightLine = (Rectangle) Map.walls.getElementAt(right, squareY + squareSize * .5);
-        Rectangle topLine = (Rectangle) Map.walls.getElementAt(squareX + squareSize * .5, top);
-        Rectangle bottomLine = (Rectangle) Map.walls.getElementAt(squareX + squareSize * .5, bottom);
+        Rectangle leftLine = (Rectangle) map.walls.getElementAt(left, squareY + squareSize * .5);
+        Rectangle rightLine = (Rectangle) map.walls.getElementAt(right, squareY + squareSize * .5);
+        Rectangle topLine = (Rectangle) map.walls.getElementAt(squareX + squareSize * .5, top);
+        Rectangle bottomLine = (Rectangle) map.walls.getElementAt(squareX + squareSize * .5, bottom);
 
         if (leftLine != null || rightLine != null || topLine != null || bottomLine != null) {
             if (leftLine != null || rightLine != null) {
@@ -126,14 +122,14 @@ private double getWidth() {
             }
         }
 
-    public void testFinish(Square square, CanvasWindow canvas) {
+    public void testFinish(Square square, CanvasWindow canvas, Map map) {
         double squareX = square.getX();
         double squareY = square.getY();
         int squareSize = square.getSideLength();
 
         double left = squareX - 15;
 
-        Rectangle zone = (Rectangle) Map.endZone.getElementAt(left, squareY + squareSize * .5);
+        Rectangle zone = (Rectangle) map.endZone.getElementAt(left, squareY + squareSize * .5);
 
         if (zone != null) {
             finished = true;
