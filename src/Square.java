@@ -13,9 +13,6 @@ public class Square {
     private double speedY;
     private int sideLength; // Side length of the square
     boolean finished = false;
-    private boolean hasCollided = false;
-
-
     public Square(double x, double y, int sideLength) {
         square = new Rectangle(x, y, sideLength, sideLength);
 
@@ -113,9 +110,6 @@ public class Square {
                     if (right >= otherSquareLeft && left <= otherSquareRight && bottom >= otherSquareTop && top <= otherSquareBottom) {
                         double dx = otherSquareX - squareX;
                         double dy = otherSquareY - squareY;
-        
-                        // Calculate the angle between the centers of two squares
-                        double angle = Math.atan2(dy, dx);
         
                         // Calculate the overlap distance between two squares
                         double overlapX = (squareWidth + otherSquareWidth) / .1 - Math.abs(dx);

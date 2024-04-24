@@ -29,7 +29,9 @@ public class SquareGame {
         canvas = new CanvasWindow("Squares Survival!!!", CANVAS_WIDTH, CANVAS_HEIGHT);
         canvas.setBackground(Color.LIGHT_GRAY);
 
-        menu = new Menu(); // Create an instance of the Menu class
+        menu = new Menu(false); // This creates the main menu
+        restart = new Menu(true); // This creates the restart menu
+
         canvas.add(menu);
 
         menu.getRace1Button().onClick(() -> {
@@ -37,10 +39,10 @@ public class SquareGame {
             menu.removeFromCanvas();
             map1.setupMap(canvas);
 
-            Square square1 = new Square(75, 715, 20);
-            Square square2 = new Square(75, 680, 20);
-            Square square3 = new Square(75, 645, 20);
-            Square square4 = new Square(75, 610, 20);
+            Square square1 = new Square(400, 85, 20);
+            Square square2 = new Square(400, 180, 20);
+            Square square3 = new Square(400, 145, 20);
+            Square square4 = new Square(400, 110, 20);
 
             square1.setSquareColor(Color.BLUE);
             square2.setSquareColor(Color.CYAN);
@@ -112,7 +114,7 @@ public class SquareGame {
                             currentMap = map2;
                         }
                         square.testTouchingWall(square, canvas, currentMap);
-                        square.testTouchingSquare(squares, canvas);
+                        //square.testTouchingSquare(squares, canvas);
                         square.testFinish(square, canvas, currentMap);
                         if (square.finished) {
                             iterator.remove();;
@@ -120,40 +122,36 @@ public class SquareGame {
                     }
                 }
             }
-                // // Check if all squares are finished
-                // if (squares.isEmpty()) {
-                //     // If all squares have finished, show the restart button
-                //     canvas.add(restart);
-                // }
+                // Check if all squares are finished
+                if (squares.isEmpty()) {
+                    // If all squares have finished, show the restart button
+                    canvas.add(restart);
+                }
         });
         
-        //menu.getRestartButton().onClick(() -> restartGame());
+        menu.getRestartButton().onClick(() -> restartGame());
     }
+    
+    public static void restartGame() {
+        // Clear existing squares
+        squares.clear();
+    
+        // Reset squares
+        Square square1 = new Square(75, 720,12);
+        Square square2 = new Square(75, 670, 12);
+        Square square3 = new Square(75, 650, 12);
+        Square square4 = new Square(75, 630, 12);
+    
+        // Add squares to the list
+        squares.add(square1);
+        squares.add(square2);
+        squares.add(square3);
+        squares.add(square4);
+        menu = new Menu(true); // This creates the main menu
 
-    // public static void restartGame() {
-    //     // Clear existing squares
-    //     squares.clear();
-    
-    //     // Reset squares
-    //     square = new Square(75, 720,12);
-    //     square2 = new Square(75, 670, 12);
-    //     square3 = new Square(75, 650, 12);
-    //     square4 = new Square(75, 630, 12);
-    
-    //     // Add squares to the list
-    //     squares.add(square);
-    //     squares.add(square2);
-    //     squares.add(square3);
-    //     squares.add(square4);
-    
-    //     // Remove the existing menu and create a new one
-    //     canvas.remove(menu);
-    //     menu = new Menu();
-    //     canvas.add(menu);
-    
-    //     // Hide square group
-    //     setSquareGroupVisibility(false);
-    // }
+        canvas.remove(menu);
+        canvas.add(restart);
+    }
 
     public static void main(String[] args) {
         new SquareGame();
