@@ -1,6 +1,5 @@
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -20,8 +19,6 @@ public class Square {
 
     public Square (double x, double y, int sideLength) {
         square = new Rectangle(x, y, sideLength, sideLength);
-        List<Square> squares = new ArrayList<>();
-
 
         Random rand = new Random();
         speedX = 1 + (rand.nextDouble() * totalSpeed) / 2;
@@ -50,9 +47,8 @@ public class Square {
         return square.getHeight();
     }
 
-private double getWidth() {
-    return square.getHeight();
-
+    private double getWidth() {
+        return square.getHeight();
     }
 
     public void move() {
@@ -60,7 +56,7 @@ private double getWidth() {
         square.setPosition(square.getX() + speedX, square.getY() + speedY);
     }
 
-    public void testTouchingWall(Square square, CanvasWindow canvas) {
+    public void testTouchingWall(Square square, CanvasWindow canvas, Map map) {
         double squareX = square.getX();
         double squareY = square.getY();
         int squareSize = square.getSideLength();
@@ -70,10 +66,10 @@ private double getWidth() {
         double left = squareX - 10;
         double right = squareX + squareSize + 10;
 
-        Rectangle leftLine = (Rectangle) Map.walls.getElementAt(left, squareY + squareSize * .5);
-        Rectangle rightLine = (Rectangle) Map.walls.getElementAt(right, squareY + squareSize * .5);
-        Rectangle topLine = (Rectangle) Map.walls.getElementAt(squareX + squareSize * .5, top);
-        Rectangle bottomLine = (Rectangle) Map.walls.getElementAt(squareX + squareSize * .5, bottom);
+        Rectangle leftLine = (Rectangle) map.walls.getElementAt(left, squareY + squareSize * .5);
+        Rectangle rightLine = (Rectangle) map.walls.getElementAt(right, squareY + squareSize * .5);
+        Rectangle topLine = (Rectangle) map.walls.getElementAt(squareX + squareSize * .5, top);
+        Rectangle bottomLine = (Rectangle) map.walls.getElementAt(squareX + squareSize * .5, bottom);
 
         if (leftLine != null || rightLine != null || topLine != null || bottomLine != null) {
             if (leftLine != null || rightLine != null) {
@@ -115,26 +111,41 @@ private double getWidth() {
                     // System.out.println("Boundaries: left=" + left + ", right=" + right + ", top=" + top + ", bottom=" + bottom);
                     // System.out.println("Other Boundaries: left=" + otherSquareLeft + ", right=" + otherSquareRight + ", top=" + otherSquareTop + ", bottom=" + otherSquareBottom);
         
-                    // Check for intersection
                     if (right >= otherSquareLeft && left <= otherSquareRight && bottom >= otherSquareTop && top <= otherSquareBottom) {
-                        // testing Collision detection
-                        //System.out.println("Collision detected between squares!");
-                        speedX = -speedX * 1;
-                        speedY = -speedY * 1;
+                        double dx = otherSquareX - squareX;
+                        double dy = otherSquareY - squareY;
+        
+                        // Calculate the angle between the centers of two squares
+                        double angle = Math.atan2(dy, dx);
+        
+                        // Calculate the overlap distance between two squares
+                        double overlapX = (squareWidth + otherSquareWidth) / .1 - Math.abs(dx);
+                        double overlapY = (squareHeight + otherSquareHeight) / .1 - Math.abs(dy);
+        
+                        // If the overlap along X is larger than along Y, bounce along X-axis
+                        if (overlapX < overlapY) {
+                            // Change the direction of both squares along X-axis
+                            speedX = -speedX;
+                            otherSquare.speedX = -otherSquare.speedX;
+                        } else { // Otherwise, bounce along Y-axis
+                            // Change the direction of both squares along Y-axis
+                            speedY = -speedY;
+                            otherSquare.speedY = -otherSquare.speedY;
+                        }
                         break; // Exit the loop after detecting one collision
                     }
                 }
             }
         }
 
-    public void testFinish(Square square, CanvasWindow canvas) {
+    public void testFinish(Square square, CanvasWindow canvas, Map map) {
         double squareX = square.getX();
         double squareY = square.getY();
         int squareSize = square.getSideLength();
 
         double left = squareX - 15;
 
-        Rectangle zone = (Rectangle) Map.endZone.getElementAt(left, squareY + squareSize * .5);
+        Rectangle zone = (Rectangle) map.endZone.getElementAt(left, squareY + squareSize * .5);
 
         if (zone != null) {
             finished = true;

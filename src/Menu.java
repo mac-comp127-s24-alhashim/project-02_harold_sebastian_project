@@ -11,9 +11,9 @@ public class Menu extends GraphicsGroup {
     private static final int CANVAS_WIDTH = 600;
     private static final int CANVAS_HEIGHT = 800;
 
-    private Button startButton;
+    private Button Race1Button;
     private Button restartButton;
-    private Button mapsButton;
+    private Button DM1Button;
 
 
     public Menu() {
@@ -25,16 +25,20 @@ public class Menu extends GraphicsGroup {
         menuBox.setFillColor(Color.WHITE);
         add(menuBox);
 
-        startButton = new Button("Start Squares Race");
-        startButton.setPosition(225,350);
-        add(startButton);
-        mapsButton = new Button("Death Match" + "\uD83D\uDC7D"+ "(Coming Soon)");
-        mapsButton.setPosition(200,450);
-        add(mapsButton);
+        Race1Button = new Button("Race");
+        Race1Button.setPosition(250,350);
+        add(Race1Button);
+        DM1Button = new Button("Death Match");
+        DM1Button.setPosition(225,450);
+        add(DM1Button);
     }
 
-    public Button getStartButton() {
-        return startButton;
+    public Button getRace1Button() {
+        return Race1Button;
+    }
+
+    public Button getDM1Button() {
+        return DM1Button;
     }
 
     public void Restart() {
