@@ -2,10 +2,13 @@
 import java.awt.Color;
 import java.util.List;
 import java.util.Random;
+import java.util.ArrayList;
 
-import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Rectangle;
-import edu.macalester.graphics.Point;
+import edu.macalester.graphics.*;
+// import edu.macalester.graphics.CanvasWindow;
+// import edu.macalester.graphics.Rectangle;
+// import edu.macalester.graphics.Point;
+// import edu.macalester.graphics.GraphicsText;
 
 public class Square {
     private Rectangle square;
@@ -14,7 +17,13 @@ public class Square {
     private double speedY;
     private int sideLength; // Side length of the square
     boolean finished = false;
-    public Square(double x, double y, int sideLength) {
+    private boolean hasCollided = false;
+    private List finishedSquares;
+    public GraphicsText squareText;
+    public int finishPlace;
+
+
+    public Square (double x, double y, int sideLength) {
         square = new Rectangle(x, y, sideLength, sideLength);
 
         Random rand = new Random();
@@ -22,6 +31,7 @@ public class Square {
         speedY = 1 + (Math.sqrt(totalSpeed * totalSpeed - speedX * speedX)) / 2;
 
         finished = false;
+        finishedSquares = new ArrayList();
     }
     
     public Rectangle getSquare() {
@@ -143,10 +153,26 @@ public class Square {
 
         if (zone != null) {
             finished = true;
+            square.showFinishPlace(square, canvas);
         }
+    }
+
+    public void showFinishPlace(Square square, CanvasWindow canvas) {
+        squareText = new GraphicsText();
+        finishedSquares.add(square);
+        finishPlace = finishedSquares.indexOf(square) + 1;
+
+        //squareText.setText(finishPlace.toString());
+        squareText.setFont(FontStyle.BOLD, square.getWidth() * 0.6);
+        squareText.setCenter(square.getCenter());
+        canvas.add(squareText);
     }
 
     public void setSquareColor(Color color) {
         square.setFillColor(color);
+    }
+
+    public Point getCenter() {
+        return square.getCenter();
     }
 }

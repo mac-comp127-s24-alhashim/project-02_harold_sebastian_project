@@ -26,7 +26,7 @@ public class SquareGame {
     public SquareGame() {
         map1 = new Map1();
         map2 = new Map2();
-        canvas = new CanvasWindow("Squares Survival!!!", CANVAS_WIDTH, CANVAS_HEIGHT);
+        canvas = new CanvasWindow("Square Survival!!!", CANVAS_WIDTH, CANVAS_HEIGHT);
         canvas.setBackground(Color.LIGHT_GRAY);
 
         menu = new Menu(false); // This creates the main menu
