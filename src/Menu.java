@@ -1,8 +1,5 @@
 import java.awt.Color;
 
-import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.GraphicsGroup;
-import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.ui.Button;
 import edu.macalester.graphics.*;
 
@@ -16,11 +13,12 @@ public class Menu extends GraphicsGroup {
 
     private Button race1Button;
     private Button restartButton;
-    private Button DM1Button;
+    private Button dm1Button;
     private GraphicsText title;
 
-
-    public Menu() {
+    private Button quitButton;
+    
+    public Menu(boolean isRestartMenu) {
         Rectangle overlay = new Rectangle(-300, -300, CANVAS_WIDTH + 300, CANVAS_HEIGHT + 300);
         overlay.setFillColor(new Color(100, 100, 100, 150)); // Grey opaque overlay
         overlay.setStrokeColor(new Color(100, 100, 100, 150));
@@ -35,20 +33,12 @@ public class Menu extends GraphicsGroup {
         title.setFont(FontStyle.BOLD_ITALIC, CANVAS_HEIGHT * 0.05);
         title.setCenter(BORDER_WIDTH + MENU_WIDTH / 2, BORDER_HEIGHT + MENU_HEIGHT * 0.2);
         add(title);
-        Race1Button = new Button("Start Race");
-        Race1Button.setCenter(BORDER_WIDTH + MENU_WIDTH / 2, BORDER_HEIGHT + MENU_HEIGHT * 0.5);
-        add(Race1Button);
-        DM1Button = new Button("Start Death Match");
-        DM1Button.setCenter(BORDER_WIDTH + MENU_WIDTH / 2, BORDER_HEIGHT + MENU_HEIGHT * 0.6);
-        add(DM1Button);
-    }
-
-    public Button getRace1Button() {
-        return Race1Button;
-    }
-
-    public Button getDM1Button() {
-        return DM1Button;
+        race1Button = new Button("Start Race");
+        race1Button.setCenter(BORDER_WIDTH + MENU_WIDTH / 2, BORDER_HEIGHT + MENU_HEIGHT * 0.5);
+        add(race1Button);
+        dm1Button = new Button("Start Death Match");
+        dm1Button.setCenter(BORDER_WIDTH + MENU_WIDTH / 2, BORDER_HEIGHT + MENU_HEIGHT * 0.6);
+        add(dm1Button);
     }
 
     public void Restart() {
