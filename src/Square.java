@@ -20,7 +20,6 @@ public class Square {
     private double speedY;
     private int sideLength; // Side length of the square
     boolean finished = false;
-    private boolean hasCollided = false;
     private List finishedSquares;
     public GraphicsText squareText;
     public int finishPlace;
@@ -151,10 +150,13 @@ public class Square {
         int squareSize = square.getSideLength();
 
         double left = squareX - 15;
+        double right = squareX + squareSize + 15;
 
-        Rectangle zone = (Rectangle) map.endZone.getElementAt(left, squareY + squareSize * .5);
+        Rectangle leftZone = (Rectangle) map.endZone.getElementAt(left, squareY + squareSize * .5);
+        Rectangle rightZone = (Rectangle) map.endZone.getElementAt(right, squareY + squareSize * .5);
 
-        if (zone != null) {
+
+        if (rightZone != null && leftZone != null) {
             finished = true;
             square.showFinishPlace(square, canvas);
         }

@@ -10,20 +10,6 @@ public class Map1 extends Map {
     }
 
     public void setupMap(CanvasWindow canvas) {
-        // Square square1 = new Square(75, 715, 20);
-        // Square square2 = new Square(75, 680, 20);
-        // Square square3 = new Square(75, 645, 20);
-        // Square square4 = new Square(75, 610, 20);
-
-        // square1.setSquareColor(Color.BLUE);
-        // square2.setSquareColor(Color.CYAN);
-        // square3.setSquareColor(Color.RED);
-        // square4.setSquareColor(Color.ORANGE);
-
-        // addSquare(square1);
-        // addSquare(square2);
-        // addSquare(square3);
-        // addSquare(square4);
 
         Rectangle wall = new Rectangle(0, 0, 600, 52.5);
         wall.setStrokeColor(Color.GRAY);
@@ -79,7 +65,6 @@ public class Map1 extends Map {
         canvas.add(walls);
         canvas.add(finishLine);
         canvas.add(endZone);
-        // canvas.add(squareGroup);
     }
 
     public GraphicsGroup getWalls() {
