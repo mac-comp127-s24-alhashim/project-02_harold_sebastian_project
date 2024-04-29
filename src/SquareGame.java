@@ -34,7 +34,10 @@ public class SquareGame {
             // Instantiate Map1 and set it as the current map
             menu.removeFromCanvas();
             map1.setupMap(canvas);
-
+            // Square square1 = new Square(400, 85, 20); // replace this with current squares to test the restart method
+            // Square square2 = new Square(400, 180, 20);
+            // Square square3 = new Square(400, 145, 20);
+            // Square square4 = new Square(400, 110, 20);
             Square square1 = new Square(75, 715, 20);
             Square square2 = new Square(75, 680, 20);
             Square square3 = new Square(75, 645, 20);
@@ -111,7 +114,7 @@ public class SquareGame {
                             currentMap = map2;
                         }
                         square.testTouchingWall(square, canvas, currentMap);
-                        //square.testTouchingSquare(squares, canvas);
+                        square.testTouchingSquare(squares, canvas);
                         square.testFinish(square, canvas, currentMap);
                         if (square.finished) {
                             iterator.remove();;
