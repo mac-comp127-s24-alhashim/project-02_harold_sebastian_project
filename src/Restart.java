@@ -6,7 +6,7 @@ import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.ui.Button;
 
-public class Restart extends GraphicsGroup{
+public class Restart extends GraphicsGroup{ // handles the restart menu, its given a boolean parameter wether to show the restart screen when the game is over.
     private static final int MENU_WIDTH = 550;
     private static final int MENU_HEIGHT = 750;
     private static final int CANVAS_WIDTH = 600;
@@ -18,12 +18,11 @@ public class Restart extends GraphicsGroup{
     private GraphicsText title;
     private boolean isRestartMenu;
 
-
-    public Restart(boolean isRestartMenu) {
+    public Restart(boolean isRestartMenu) {// makes restart into a boolean to control its visibility. true = visible, false = not visible.
         this.isRestartMenu = isRestartMenu;
         restartGame(isRestartMenu);
     }
-    public void restartGame(boolean isRestartMenu) {
+    public void restartGame(boolean isRestartMenu) {// creates the graphics objects on the canvas when called by the main 
 
         Rectangle overlay = new Rectangle(-300, -300, CANVAS_WIDTH + 300, CANVAS_HEIGHT + 300);
         overlay.setFillColor(new Color(100, 100, 100, 150)); // Grey opaque overlay
@@ -67,4 +66,3 @@ public class Restart extends GraphicsGroup{
         }
     }
 }
-

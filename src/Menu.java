@@ -7,7 +7,7 @@ import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.ui.Button;
 
-public class Menu extends GraphicsGroup {
+public class Menu extends GraphicsGroup {// this menu has two buttons that will display the two game modes to choose from, the menu is called when the main game is started.
     private static final int MENU_WIDTH = 550;
     private static final int MENU_HEIGHT = 750;
     private static final int CANVAS_WIDTH = 600;
@@ -20,7 +20,7 @@ public class Menu extends GraphicsGroup {
     private GraphicsText title;
     private boolean isMenu;
 
-    public Menu(boolean isMenu) {
+    public Menu(boolean isMenu) { // makes the menu into a boolean which can be removed when stating if its true or false.
         this.isMenu = isMenu;
         setupMenu(isMenu);
     }

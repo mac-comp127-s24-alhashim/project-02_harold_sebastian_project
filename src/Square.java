@@ -3,7 +3,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 // import edu.macalester.graphics.CanvasWindow;
 // import edu.macalester.graphics.Rectangle;
 // import edu.macalester.graphics.Point;

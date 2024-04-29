@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
-
 import edu.macalester.graphics.GraphicsGroup;
-
 
 public class Map {
     protected GraphicsGroup walls;
@@ -15,7 +13,6 @@ public class Map {
         walls = new GraphicsGroup();
         finishLine = new GraphicsGroup();
         endZone = new GraphicsGroup();
-
         squares = new ArrayList<>();
         squareGroup = new GraphicsGroup();
     }
@@ -45,4 +42,3 @@ public class Map {
         return squareGroup;
     }
 }
-

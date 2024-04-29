@@ -2,7 +2,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 
@@ -21,7 +20,7 @@ public class SquareGame {
     private static boolean map1Start = false;
     private static boolean map2Start = false;
 
-    public SquareGame() {
+    public SquareGame() {// starts the game with the menu screen, there are buttons for the game modes, for the end of the game theres buttons to quit and to restart.
         map1 = new Map1();
         map2 = new Map2();
         canvas = new CanvasWindow("Square Survival!!!", CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -30,7 +29,7 @@ public class SquareGame {
         restart = new Restart(false); // This creates the restart menu
         canvas.add(menu);
 
-        menu.getRace1Button().onClick(() -> {
+        menu.getRace1Button().onClick(() -> {// adds the map and squares to the canvas.
             // Instantiate Map1 and set it as the current map
             menu.removeFromCanvas();
             map1.setupMap(canvas);
@@ -38,6 +37,7 @@ public class SquareGame {
             // Square square2 = new Square(400, 180, 20);
             // Square square3 = new Square(400, 145, 20);
             // Square square4 = new Square(400, 110, 20);
+
             Square square1 = new Square(75, 715, 20);
             Square square2 = new Square(75, 680, 20);
             Square square3 = new Square(75, 645, 20);
@@ -63,11 +63,11 @@ public class SquareGame {
         });
 
         // Maps button event
-        menu.getDM1Button().onClick(() -> {
+        menu.getDM1Button().onClick(() -> {// when the button is clicked,  map2 and the squares are added to the canvas.
             // Instantiate Map2 and set it as the current map
             menu.removeFromCanvas();
             map2.setupMap(canvas);
-           
+
             Square square1 = new Square(75, 715, 20);
             Square square2 = new Square(75, 680, 20);
             Square square3 = new Square(75, 645, 20);
@@ -122,21 +122,18 @@ public class SquareGame {
                     }
                 }
             }
-            // Check if all squares are finished
-            if (squares.size() == 0) {
+            if (squares.size() == 0) {// Check if all squares are finished
                 allFinished = true;
-                animationRunning = false; // Stop animation loop
+                animationRunning = false; // Stops animation loop
                 canvas.add(restart);
                 restart.restartGame(true);
 
             }restart.getRestartButton().onClick(() -> restartGame());
         restart.getQuitButton().onClick(() -> System.exit(0));
         });
-            
-        
     }
 
-    public static void restartGame() {// resets everything and removes everything from the canvas before restarting the game.   
+    public static void restartGame() {// resets everything and removes everything from the canvas before restarting the game.
         squareGroup.removeAll();
         map1Start = false;
         map2Start = false;

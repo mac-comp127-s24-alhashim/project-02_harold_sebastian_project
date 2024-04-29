@@ -7,7 +7,6 @@ public class Wall {
     private double yEnd;
     private Rectangle wall;
 
-    
     public Wall(double x, double y, double width, double height) {
         this.xStart = x;
         this.yStart = y;
@@ -15,7 +14,6 @@ public class Wall {
         this.yEnd = y + height; // Calculate end Y coordinate
         this.wall = new Rectangle(x, y, width, height);
     }
-    
 
     public double getXStart() { // getter methods for the Wall
         return xStart;
@@ -38,5 +36,3 @@ public class Wall {
         return wall;
     }
 }
-    
-

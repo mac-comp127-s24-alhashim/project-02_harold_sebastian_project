@@ -1,10 +1,7 @@
 import java.awt.Color;
-
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Rectangle;
-
-
 
 public class Map1 extends Map {
 
@@ -101,5 +98,3 @@ public class Map1 extends Map {
         return squareGroup;
     }
 }
-
-
