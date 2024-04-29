@@ -52,11 +52,11 @@ public class Square {
         return sideLength;
     }
 
-    private double getHeight() {
+    double getHeight() {
         return square.getHeight();
     }
 
-    private double getWidth() {
+    double getWidth() {
         return square.getHeight();
     }
 
