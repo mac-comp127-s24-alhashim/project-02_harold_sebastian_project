@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 // import edu.macalester.graphics.CanvasWindow;
 // import edu.macalester.graphics.Rectangle;
 // import edu.macalester.graphics.Point;
@@ -15,7 +16,7 @@ import edu.macalester.graphics.Rectangle;
 
 public class Square {
     private Rectangle square;
-    private double totalSpeed = 2;
+    private double totalSpeed = 6;
     private double speedX;
     private double speedY;
     private int sideLength; // Side length of the square
