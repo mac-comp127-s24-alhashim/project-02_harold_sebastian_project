@@ -1,14 +1,18 @@
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.ArrayList;
 
-import edu.macalester.graphics.*;
 // import edu.macalester.graphics.CanvasWindow;
 // import edu.macalester.graphics.Rectangle;
 // import edu.macalester.graphics.Point;
 // import edu.macalester.graphics.GraphicsText;
+import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.FontStyle;
+import edu.macalester.graphics.GraphicsText;
+import edu.macalester.graphics.Point;
+import edu.macalester.graphics.Rectangle;
 
 public class Square {
     private Rectangle square;
