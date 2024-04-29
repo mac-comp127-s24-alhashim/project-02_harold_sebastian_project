@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,12 +11,11 @@ public class SquareGame {
     private static final int CANVAS_HEIGHT = 800;
     private static CanvasWindow canvas;
     private static Menu menu;
-    private static Menu restart;
-
-
+    private static Restart restart;
     private static Map1 map1;
     private static Map2 map2;
     private static boolean allFinished = true;
+    private static boolean animationRunning = true;
     public static List<Square> squares = new ArrayList<>();
     public static GraphicsGroup squareGroup = new GraphicsGroup();
     private static boolean map1Start = false;
@@ -28,10 +26,8 @@ public class SquareGame {
         map2 = new Map2();
         canvas = new CanvasWindow("Square Survival!!!", CANVAS_WIDTH, CANVAS_HEIGHT);
         canvas.setBackground(Color.LIGHT_GRAY);
-
-        menu = new Menu(false); // This creates the main menu
-        restart = new Menu(true); // This creates the restart menu
-
+        menu = new Menu(true); // This creates the main menu
+        restart = new Restart(false); // This creates the restart menu
         canvas.add(menu);
 
         menu.getRace1Button().onClick(() -> {
@@ -96,6 +92,9 @@ public class SquareGame {
         });
 
         canvas.animate(() -> {
+            if (!animationRunning) {
+                return;
+            }
             if (map1Start == false && map2Start == false) {
                 return;
             }
@@ -122,37 +121,37 @@ public class SquareGame {
                     }
                 }
             }
-                // Check if all squares are finished
-                if (squares.isEmpty()) {
-                    // If all squares have finished, show the restart button
-                    canvas.add(restart);
-                }
+            // Check if all squares are finished
+            if (squares.size() == 0) {
+                allFinished = true;
+                animationRunning = false; // Stop animation loop
+                // If all squares have finished, show the restart menu
+                canvas.add(restart);
+                restart.restartGame(true);
+            }
         });
-        
-        menu.getRestartButton().onClick(() -> restartGame());
+            
+        restart.getRestartButton().onClick(() -> restartGame());
+
+        restart.getQuitButton().onClick(() -> System.exit(0));
     }
-    
+
     public static void restartGame() {
         // Clear existing squares
         squares.clear();
-    
-        // Reset squares
-        Square square1 = new Square(75, 720,12);
-        Square square2 = new Square(75, 670, 12);
-        Square square3 = new Square(75, 650, 12);
-        Square square4 = new Square(75, 630, 12);
-    
-        // Add squares to the list
-        squares.add(square1);
-        squares.add(square2);
-        squares.add(square3);
-        squares.add(square4);
-        menu = new Menu(true); // This creates the main menu
 
-        canvas.remove(menu);
-        canvas.add(restart);
+        // Reset map flags
+        map1Start = false;
+        map2Start = false;
+
+        canvas.removeAll();
+
+        // Remove the restart menu and add the main menu back to the canvas
+        //canvas.remove(restart);
+        canvas.add(menu);
+        animationRunning = true; // Restart animation loop
     }
-
+    
     public static void main(String[] args) {
         new SquareGame();
     }
