@@ -65,10 +65,10 @@ public class SquareGame {
             menu.removeFromCanvas();
             map2.setupMap(canvas);
 
-            Square square1 = new Square(75, 715, 20);
-            Square square2 = new Square(75, 680, 20);
-            Square square3 = new Square(75, 645, 20);
-            Square square4 = new Square(75, 610, 20);
+            Square square1 = new Square(300, 700, 20);
+            Square square2 = new Square(300, 650, 20);
+            Square square3 = new Square(300, 600, 20);
+            Square square4 = new Square(300, 550, 20);
 
             square1.setSquareColor(Color.GREEN);
             square2.setSquareColor(Color.CYAN);
