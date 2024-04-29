@@ -35,10 +35,10 @@ public class SquareGame {
             menu.removeFromCanvas();
             map1.setupMap(canvas);
 
-            Square square1 = new Square(400, 85, 20);
-            Square square2 = new Square(400, 180, 20);
-            Square square3 = new Square(400, 145, 20);
-            Square square4 = new Square(400, 110, 20);
+            Square square1 = new Square(75, 715, 20);
+            Square square2 = new Square(75, 680, 20);
+            Square square3 = new Square(75, 645, 20);
+            Square square4 = new Square(75, 610, 20);
 
             square1.setSquareColor(Color.BLUE);
             square2.setSquareColor(Color.CYAN);
@@ -54,7 +54,6 @@ public class SquareGame {
             squareGroup.add(square2.getSquare());
             squareGroup.add(square3.getSquare());
             squareGroup.add(square4.getSquare());
-
             canvas.add(squareGroup);
 
             map1Start = true;
@@ -85,7 +84,6 @@ public class SquareGame {
             squareGroup.add(square2.getSquare());
             squareGroup.add(square3.getSquare());
             squareGroup.add(square4.getSquare());
-
             canvas.add(squareGroup);
 
             map2Start = true;
@@ -125,31 +123,23 @@ public class SquareGame {
             if (squares.size() == 0) {
                 allFinished = true;
                 animationRunning = false; // Stop animation loop
-                // If all squares have finished, show the restart menu
                 canvas.add(restart);
                 restart.restartGame(true);
-            }
+
+            }restart.getRestartButton().onClick(() -> restartGame());
+        restart.getQuitButton().onClick(() -> System.exit(0));
         });
             
-        restart.getRestartButton().onClick(() -> restartGame());
-
-        restart.getQuitButton().onClick(() -> System.exit(0));
+        
     }
 
-    public static void restartGame() {
-        // Clear existing squares
-        squares.clear();
-
-        // Reset map flags
+    public static void restartGame() {// resets everything and removes everything from the canvas before restarting the game.   
+        squareGroup.removeAll();
         map1Start = false;
         map2Start = false;
-
         canvas.removeAll();
-
-        // Remove the restart menu and add the main menu back to the canvas
-        //canvas.remove(restart);
         canvas.add(menu);
-        animationRunning = true; // Restart animation loop
+        animationRunning = true;
     }
     
     public static void main(String[] args) {
