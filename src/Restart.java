@@ -46,6 +46,8 @@ public class Restart extends GraphicsGroup{ // handles the restart menu, its giv
         quitButton = new Button("Quit Game");
         quitButton.setCenter(BORDER_WIDTH + MENU_WIDTH / 2, BORDER_HEIGHT + MENU_HEIGHT * 0.6);
         add(quitButton);
+
+        SquareGame.finishedSquares.clear();
     }
     
     public Button getRestartButton() {

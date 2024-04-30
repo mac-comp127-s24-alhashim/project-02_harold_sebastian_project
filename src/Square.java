@@ -21,9 +21,8 @@ public class Square {
     private double speedY;
     private int sideLength; // Side length of the square
     boolean finished = false;
-    private List finishedSquares;
     public GraphicsText squareText;
-    public int finishPlace;
+    public Integer finishPlace;
 
 
     public Square (double x, double y, int sideLength) {
@@ -34,7 +33,7 @@ public class Square {
         speedY = 1 + (Math.sqrt(totalSpeed * totalSpeed - speedX * speedX)) / 2;
 
         finished = false;
-        finishedSquares = new ArrayList();
+        //finishedSquares = new ArrayList();
     }
     
     public Rectangle getSquare() {
@@ -165,10 +164,10 @@ public class Square {
 
     public void showFinishPlace(Square square, CanvasWindow canvas) {
         squareText = new GraphicsText();
-        finishedSquares.add(square);
-        finishPlace = finishedSquares.indexOf(square) + 1;
+        SquareGame.finishedSquares.add(square);
+        finishPlace = SquareGame.finishedSquares.indexOf(square) + 1;
 
-        //squareText.setText(finishPlace.toString());
+        squareText.setText(finishPlace.toString());
         squareText.setFont(FontStyle.BOLD, square.getWidth() * 0.6);
         squareText.setCenter(square.getCenter());
         canvas.add(squareText);

@@ -20,6 +20,7 @@ public class SquareGame {
     public static GraphicsGroup squareGroup = new GraphicsGroup();
     private static boolean map1Start = false;
     private static boolean map2Start = false;
+    public static List<Square> finishedSquares = new ArrayList<Square>();
 
     public SquareGame() {// starts the game with the menu screen, there are buttons for the game modes, for the end of the game theres buttons to quit and to restart.
         map1 = new Map1();
@@ -103,7 +104,8 @@ public class SquareGame {
             if (map1Start == false && map2Start == false) {
                 return;
             }
-            System.out.println("Number of squares: " + squares.size());
+
+            //System.out.println("Number of squares: " + squares.size());
             if (allFinished) {
                 Iterator<Square> iterator = squares.iterator();
                 while (iterator.hasNext()) {
