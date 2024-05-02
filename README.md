@@ -23,6 +23,7 @@ The inspiration for this project comes from @project_jdm on YouTube, who makes s
 
 ## What it looks like
 
+<img width="598" alt="Screen Shot 2024-05-02 at 4 17 39 PM" src="https://github.com/mac-comp127-s24-alhashim/project-02_harold_sebastian_project/assets/156940876/99cbe49d-ae8b-4367-92e5-4706af7ac4e4">
 
 
 
