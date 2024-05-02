@@ -47,15 +47,11 @@ public class SquareGame {
         menu.getRace1Button().onClick(() -> {
             menu.removeFromCanvas();
             map1.setupMap(canvas);
-            // // Add squares to the canvas
-            // Square square1 = new Square(75, 715, 20);
-            // Square square2 = new Square(75, 680, 20);
-            // Square square3 = new Square(75, 645, 20);
-            // Square square4 = new Square(75, 610, 20);
-              Square square1 = new Square(400, 60, 20); // replace this with current squares to test the restart method
-            Square square2 = new Square(400, 160, 20);
-            Square square3 = new Square(400, 125, 20);
-            Square square4 = new Square(400, 90, 20);
+            // Add squares to the canvas
+            Square square1 = new Square(75, 715, 20);
+            Square square2 = new Square(75, 680, 20);
+            Square square3 = new Square(75, 645, 20);
+            Square square4 = new Square(75, 610, 20);
 
             finishedSquares.clear();
             squares.clear();
