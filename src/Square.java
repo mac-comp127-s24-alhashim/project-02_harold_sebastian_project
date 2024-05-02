@@ -1,6 +1,5 @@
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,7 +15,7 @@ import edu.macalester.graphics.Rectangle;
 
 public class Square {
     private Rectangle square;
-    private double totalSpeed = 6;
+    private double totalSpeed = 3;
     private double speedX;
     private double speedY;
     private int sideLength; // Side length of the square
@@ -96,54 +95,52 @@ public class Square {
             double squareY = square.getY();
             double squareWidth = square.getWidth();
             double squareHeight = square.getHeight();
-        
-            double top = squareY - 7.5;
-            double bottom = squareY + squareHeight + 7.5;
-            double left = squareX - 7.5;
-            double right = squareX + squareWidth + 7.5;
-        
+    
             for (Square otherSquare : squares) {
                 if (otherSquare != this) {
                     double otherSquareX = otherSquare.getX();
                     double otherSquareY = otherSquare.getY();
                     double otherSquareWidth = otherSquare.getWidth();
                     double otherSquareHeight = otherSquare.getHeight();
-        
-                    // Calculate boundaries of the other squares
-                    double otherSquareTop = otherSquareY - otherSquareHeight / 4;
-                    double otherSquareBottom = otherSquareY + otherSquareHeight / 4;
-                    double otherSquareLeft = otherSquareX - otherSquareWidth / 4;
-                    double otherSquareRight = otherSquareX + otherSquareWidth / 4;
-        
-                    // System.out.println("Square: " + squareX + ", " + squareY + ", " + squareWidth + ", " + squareHeight);
-                    // System.out.println("Other Square: " + otherSquareX + ", " + otherSquareY + ", " + otherSquareWidth + ", " + otherSquareHeight);
-                    // System.out.println("Boundaries: left=" + left + ", right=" + right + ", top=" + top + ", bottom=" + bottom);
-                    // System.out.println("Other Boundaries: left=" + otherSquareLeft + ", right=" + otherSquareRight + ", top=" + otherSquareTop + ", bottom=" + otherSquareBottom);
-        
-                    if (right >= otherSquareLeft && left <= otherSquareRight && bottom >= otherSquareTop && top <= otherSquareBottom) {
+    
+                    // Calculate boundaries of the squares
+                    double left = squareX - 7.5;
+                    double right = squareX + squareWidth + 7.5;
+                    double top = squareY - 7.5;
+                    double bottom = squareY + squareHeight + 7.5;
+    
+                    double otherLeft = otherSquareX - 7.5;
+                    double otherRight = otherSquareX + otherSquareWidth + 7.5;
+                    double otherTop = otherSquareY - 7.5;
+                    double otherBottom = otherSquareY + otherSquareHeight + 7.5;
+    
+                    // Check for collision
+                    if (right >= otherLeft && left <= otherRight && bottom >= otherTop && top <= otherBottom) {
+                        // Calculate the distance between the centers of the squares
                         double dx = otherSquareX - squareX;
                         double dy = otherSquareY - squareY;
-        
-                        // Calculate the overlap distance between two squares
-                        double overlapX = (squareWidth + otherSquareWidth) / .1 - Math.abs(dx);
-                        double overlapY = (squareHeight + otherSquareHeight) / .1 - Math.abs(dy);
-        
-                        // If the overlap along X is larger than along Y, bounce along X-axis
-                        if (overlapX < overlapY) {
-                            // Change the direction of both squares along X-axis
-                            speedX = -speedX;
-                            otherSquare.speedX = -otherSquare.speedX;
-                        } else { // Otherwise, bounce along Y-axis
-                            // Change the direction of both squares along Y-axis
-                            speedY = -speedY;
-                            otherSquare.speedY = -otherSquare.speedY;
+                        double distance = Math.sqrt(dx * dx + dy * dy);
+    
+                        // Calculate the minimum distance for collision
+                        double minDistance = squareWidth / 2.0 + otherSquareWidth / 2.0;
+    
+                        // If the squares are colliding, calculate and apply repulsion
+                        if (distance < minDistance) {
+                            // Calculate the direction of repulsion
+                            double repulsionAngle = Math.atan2(dy, dx);
+                            double repulsionX = Math.cos(repulsionAngle);
+                            double repulsionY = Math.sin(repulsionAngle);
+    
+                            // Apply repulsion to both squares
+                            speedX -= repulsionX +2;
+                            speedY -= repulsionY+2;
+                            otherSquare.speedX += repulsionX;
+                            otherSquare.speedY += repulsionY;
                         }
-                        break; // Exit the loop after detecting one collision
                     }
                 }
             }
         }
-
     public void testFinish(Square square, CanvasWindow canvas, Map map) {
         double squareX = square.getX();
         double squareY = square.getY();
