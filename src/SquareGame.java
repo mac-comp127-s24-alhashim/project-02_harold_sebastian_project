@@ -34,21 +34,20 @@ public class SquareGame {
         menu = new Menu(true); // This creates the main menu
         restart = new Restart(false); // This creates the restart menu
         canvas.add(menu);
-
+        
         menu.getRace1Button().onClick(() -> {// adds the map and squares to the canvas.
             // Instantiate Map1 and set it as the current map
 
             menu.removeFromCanvas();
             map1.setupMap(canvas);
-            // Square square1 = new Square(400, 60, 20); // replace this with current squares to test the restart method
-            // Square square2 = new Square(400, 160, 20);
-            // Square square3 = new Square(400, 125, 20);
-            // Square square4 = new Square(400, 90, 20);
-
             Square square1 = new Square(75, 715, 20);
             Square square2 = new Square(75, 680, 20);
             Square square3 = new Square(75, 645, 20);
             Square square4 = new Square(75, 610, 20);
+        //     Square square1 = new Square(400, 75, 20); // test restart
+        //     Square square2 = new Square(400, 100, 20);
+        //     Square square3 = new Square(400, 115, 20);
+        //     Square square4 = new Square(400, 125, 20);
 
             finishedSquares.clear();
             squares.clear();
@@ -88,17 +87,7 @@ public class SquareGame {
             // Instantiate Map2 and set it as the current map
             menu.removeFromCanvas();
             map2.setupMap(canvas);
-
-            // Square square1 = new Square(150, 440, 20); // test restart
-            // Square square2 = new Square(150, 461, 20);
-            // Square square3 = new Square(150, 482, 20);
-            // Square square4 = new Square(150, 503, 20);
-
-            // Square square1 = new Square(75, 715, 20); //unused
-            // Square square2 = new Square(75, 680, 20);
-            // Square square3 = new Square(75, 645, 20);
-            // Square square4 = new Square(75, 610, 20);
-
+            
             Square square1 = new Square(300, 700, 20);
             Square square2 = new Square(300, 650, 20);
             Square square3 = new Square(300, 600, 20);
@@ -171,6 +160,7 @@ public class SquareGame {
                 allFinished = true;
                 animationRunning = false; // Stops animation loop
                 canvas.removeAll();
+                pause(1000);
                 canvas.add(restart);
                 restart.restartGame(true);
 
@@ -179,6 +169,7 @@ public class SquareGame {
                 allFinished = true;
                 animationRunning = false; // Stops animation loop
                 canvas.removeAll();
+                pause(1000);
                 canvas.add(restart);
                 restart.restartGame(true);
 
@@ -199,7 +190,14 @@ public class SquareGame {
         canvas.add(menu);
         animationRunning = true;
     }
-    
+
+    public void pause(double milliseconds) {
+    try {
+        Thread.sleep((long) milliseconds);
+    } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+    }
+}
     public static void main(String[] args) {
         new SquareGame();
     }

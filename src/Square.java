@@ -3,10 +3,6 @@ import java.awt.Color;
 import java.util.List;
 import java.util.Random;
 
-// import edu.macalester.graphics.CanvasWindow;
-// import edu.macalester.graphics.Rectangle;
-// import edu.macalester.graphics.Point;
-// import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
@@ -15,7 +11,7 @@ import edu.macalester.graphics.Rectangle;
 
 public class Square {
     private Rectangle square;
-    private double totalSpeed = 3;
+    private double totalSpeed = 5;
     private double speedX;
     private double speedY;
     private int sideLength; // Side length of the square
@@ -81,10 +77,10 @@ public class Square {
 
         if (leftLine != null || rightLine != null || topLine != null || bottomLine != null) {
             if (leftLine != null || rightLine != null) {
-                square.speedX = -1 * square.speedX;
+                square.speedX = -1.01 * square.speedX;
             }
             if (topLine != null || bottomLine != null) {
-                square.speedY = -1 * square.speedY;
+                square.speedY = -1.01 * square.speedY;
             }
         }
 
@@ -132,8 +128,8 @@ public class Square {
                             double repulsionY = Math.sin(repulsionAngle);
     
                             // Apply repulsion to both squares
-                            speedX -= repulsionX +2;
-                            speedY -= repulsionY+2;
+                            speedX -= repulsionX ;
+                            speedY -= repulsionY ;
                             otherSquare.speedX += repulsionX;
                             otherSquare.speedY += repulsionY;
                         }
