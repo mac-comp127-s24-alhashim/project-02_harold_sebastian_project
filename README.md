@@ -7,7 +7,7 @@ finish line and placements/winners will be determined by the order in which the 
 "deathmatch" mode, placements/winners will be determined by the reverse order in which the squares enter the zones. 
 
 ## Requirements
-The program requires a current version of Java and uses java.awt, java.util, and edu.macalester.graphics packages.
+The program requires Java version 17 and uses the java.awt, java.util, and edu.macalester.graphics packages.
 
 ## How To Run
 To run the game: open the project code in your external editor of choice, run the SquareGame.java file, and select a map to see the simulation.
