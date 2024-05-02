@@ -1,4 +1,5 @@
 import java.awt.Color;
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Rectangle;
@@ -14,7 +15,7 @@ public class Map2 extends Map {
      * Constructs a new Map2 object.
      * Initializes the map elements by calling the superclass constructor.
      */
-    public Map2() { 
+    public Map2() {
         super();
     }
 
@@ -58,11 +59,6 @@ public class Map2 extends Map {
         wall8.setStrokeColor(Color.GRAY);
         wall8.setFillColor(Color.GRAY);
         walls.add(wall8);
-    
-        // Rectangle finish = new Rectangle(422.5, 53.5, 5, 158);
-        // finish.setStrokeColor(Color.red);
-        // finish.setFillColor(Color.PINK);
-        // finishLine.add(finish);
 
         Rectangle zone = new Rectangle(250, 325, 100, 150);
         zone.setStrokeColor(Color.red);

@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 
@@ -10,8 +11,6 @@ import edu.macalester.graphics.GraphicsGroup;
  * The main class for the Square Survival game.
  * Handles game initialization, map selection, square movement, collision detection, and game restart.
  * Contains methods for managing game state and updating the canvas.
- *Collaborators: [ https://github.com/HaroldPonce22, https://github.com/sstefanowiczhttps://github.com/sstefanowicz, https://github.com/Zander-L ]
-
  */
 public class SquareGame {
     private static final int CANVAS_WIDTH = 600;
@@ -48,11 +47,15 @@ public class SquareGame {
         menu.getRace1Button().onClick(() -> {
             menu.removeFromCanvas();
             map1.setupMap(canvas);
-            // Add squares to the canvas
-            Square square1 = new Square(75, 715, 20);
-            Square square2 = new Square(75, 680, 20);
-            Square square3 = new Square(75, 645, 20);
-            Square square4 = new Square(75, 610, 20);
+            // // Add squares to the canvas
+            // Square square1 = new Square(75, 715, 20);
+            // Square square2 = new Square(75, 680, 20);
+            // Square square3 = new Square(75, 645, 20);
+            // Square square4 = new Square(75, 610, 20);
+              Square square1 = new Square(400, 60, 20); // replace this with current squares to test the restart method
+            Square square2 = new Square(400, 160, 20);
+            Square square3 = new Square(400, 125, 20);
+            Square square4 = new Square(400, 90, 20);
 
             finishedSquares.clear();
             squares.clear();
@@ -156,9 +159,9 @@ public class SquareGame {
                         else if (map2Start == true) {
                             currentMap = map2;
                         }
-                        square.testTouchingWall(square, canvas, currentMap);
-                        square.testTouchingSquare(squares, canvas);
-                        square.testFinish(square, canvas, currentMap);
+                        WallCollision.handleWallCollision(square, currentMap);
+                        SquareCollision.handleSquareCollision(square, squares);
+                        FinishedSquares.testFinish(square, canvas, currentMap);
                         if (square.finished) {
                             iterator.remove();;
                         }
