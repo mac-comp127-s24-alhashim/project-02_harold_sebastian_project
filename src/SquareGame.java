@@ -10,7 +10,7 @@ import edu.macalester.graphics.GraphicsGroup;
  * The main class for the Square Survival game.
  * Handles game initialization, map selection, square movement, collision detection, and game restart.
  * Contains methods for managing game state and updating the canvas.
- *Collaborators: [ https://github.com/HaroldPonce22, https://github.com/sstefanowicz, https://github.com/Zander-L ]
+ *Collaborators: [ https://github.com/HaroldPonce22, https://github.com/sstefanowiczhttps://github.com/sstefanowicz, https://github.com/Zander-L ]
 
  */
 public class SquareGame {
