@@ -25,5 +25,8 @@ The inspiration for this project comes from @project_jdm on YouTube, who makes s
 
 <img width="598" alt="Screen Shot 2024-05-02 at 4 17 39 PM" src="https://github.com/mac-comp127-s24-alhashim/project-02_harold_sebastian_project/assets/156940876/99cbe49d-ae8b-4367-92e5-4706af7ac4e4">
 
+<img width="598" alt="Screen Shot 2024-05-02 at 4 19 06 PM" src="https://github.com/mac-comp127-s24-alhashim/project-02_harold_sebastian_project/assets/156940876/d6794390-2e09-49b0-b580-d416e7d72370">
 
+<img width="598" alt="Screen Shot 2024-05-02 at 4 20 59 PM" src="https://github.com/mac-comp127-s24-alhashim/project-02_harold_sebastian_project/assets/156940876/042a9b4c-e4ee-4674-969f-9a6461cfd492">
 
+<img width="599" alt="Screen Shot 2024-05-02 at 4 20 43 PM" src="https://github.com/mac-comp127-s24-alhashim/project-02_harold_sebastian_project/assets/156940876/06eb3466-b1a1-4a9d-a5e0-ea2c777c0ba8">
