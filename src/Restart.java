@@ -7,8 +7,8 @@ import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.ui.Button;
 
 public class Restart extends GraphicsGroup{ // handles the restart menu, its given a boolean parameter wether to show the restart screen when the game is over.
-    private static final int MENU_WIDTH = 550;
-    private static final int MENU_HEIGHT = 750;
+    private static final int MENU_WIDTH = 525;
+    private static final int MENU_HEIGHT = 725;
     private static final int CANVAS_WIDTH = 600;
     private static final int CANVAS_HEIGHT = 800;
     private static final int BORDER_WIDTH = (CANVAS_WIDTH - MENU_WIDTH) / 2;
@@ -25,21 +25,22 @@ public class Restart extends GraphicsGroup{ // handles the restart menu, its giv
     public void restartGame(boolean isRestartMenu) {// creates the graphics objects on the canvas when called by the main 
 
         Rectangle overlay = new Rectangle(-300, -300, CANVAS_WIDTH + 300, CANVAS_HEIGHT + 300);
-        overlay.setFillColor(new Color(100, 100, 100, 150)); // Grey opaque overlay
+        overlay.setFillColor(Color.GRAY); // Grey opaque overlay
         overlay.setStrokeColor(new Color(100, 100, 100, 150));
         add(overlay);
     
         Rectangle menuBox = new Rectangle(BORDER_WIDTH, BORDER_HEIGHT, MENU_WIDTH, MENU_HEIGHT);
         menuBox.setFillColor(Color.WHITE);
-        menuBox.setStrokeColor(Color.WHITE);
+        menuBox.setStrokeColor(Color.BLACK);
+        menuBox.setStrokeWidth(3);
         add(menuBox);
 
-        title = new GraphicsText("Game Over");
+        title = new GraphicsText("Finished!");
         title.setFont(FontStyle.BOLD_ITALIC, CANVAS_HEIGHT * 0.05);
         title.setCenter(BORDER_WIDTH + MENU_WIDTH / 2, BORDER_HEIGHT + MENU_HEIGHT * 0.2);
         add(title);
 
-        restartButton = new Button("Restart Game");
+        restartButton = new Button("Back to Main Menu");
         restartButton.setCenter(BORDER_WIDTH + MENU_WIDTH / 2, BORDER_HEIGHT + MENU_HEIGHT * 0.5);
         add(restartButton);
         
@@ -57,6 +58,7 @@ public class Restart extends GraphicsGroup{ // handles the restart menu, its giv
     public Button getQuitButton() {
         return quitButton;
     }
+
     public boolean isRestartMenu() {
         return isRestartMenu;
     }

@@ -10,7 +10,9 @@ public class Map2 extends Map {
     }
 
     public void setupMap(CanvasWindow canvas) {
-
+        canvasWidth = canvas.getWidth();
+        canvasHeight = canvas.getHeight();
+        
         Rectangle wall = new Rectangle(0, 0, 600, 52.5);
         wall.setStrokeColor(Color.GRAY);
         wall.setFillColor(Color.GRAY);
@@ -57,6 +59,12 @@ public class Map2 extends Map {
         canvas.add(walls);
         canvas.add(finishLine);
         canvas.add(endZone);
+        
+        restartButton.setCenter(canvasWidth / 3, canvasHeight * 0.03);
+        canvas.add(restartButton);
+        
+        quitButton.setCenter(canvasWidth / 3 * 2, canvasHeight * 0.03);
+        canvas.add(quitButton);
     }
 
     public GraphicsGroup getWalls() {

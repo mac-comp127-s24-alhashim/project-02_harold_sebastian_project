@@ -37,26 +37,34 @@ public class SquareGame {
 
             menu.removeFromCanvas();
             map1.setupMap(canvas);
-            Square square1 = new Square(400, 80, 20); // replace this with current squares to test the restart method
-            Square square2 = new Square(400, 180, 20);
-            Square square3 = new Square(400, 145, 20);
-            Square square4 = new Square(400, 110, 20);
+            // Square square1 = new Square(400, 60, 20); // replace this with current squares to test the restart method
+            // Square square2 = new Square(400, 160, 20);
+            // Square square3 = new Square(400, 125, 20);
+            // Square square4 = new Square(400, 90, 20);
 
-            // Square square1 = new Square(75, 715, 20);
-            // Square square2 = new Square(75, 680, 20);
-            // Square square3 = new Square(75, 645, 20);
-            // Square square4 = new Square(75, 610, 20);
+            Square square1 = new Square(75, 715, 20);
+            Square square2 = new Square(75, 680, 20);
+            Square square3 = new Square(75, 645, 20);
+            Square square4 = new Square(75, 610, 20);
 
             square1.setSquareColor(Color.BLUE);
+            //square1.setStrokeColor(Color.BLUE);
             square2.setSquareColor(Color.CYAN);
+            //square2.setStrokeColor(Color.CYAN);
             square3.setSquareColor(Color.RED);
+            //square3.setStrokeColor(Color.RED);
             square4.setSquareColor(Color.ORANGE);
+            //square4.setStrokeColor(Color.ORANGE);
 
             squares.clear();
             squares.add(square1);
             squares.add(square2);
             squares.add(square3);
             squares.add(square4);
+            
+            for (Square square : squares) {
+                square.setStrokeWidth(1.7);
+            }
 
             squareGroup.add(square1.getSquare());
             squareGroup.add(square2.getSquare());
@@ -65,6 +73,9 @@ public class SquareGame {
             canvas.add(squareGroup);
 
             map1Start = true;
+
+            map1.getRestartButton().onClick(() -> restartGame());
+            map1.getQuitButton().onClick(() -> System.exit(0));
         });
 
         // Maps button event
@@ -73,32 +84,40 @@ public class SquareGame {
             menu.removeFromCanvas();
             map2.setupMap(canvas);
 
-            Square square1 = new Square(150, 440, 20); // test restart
-            Square square2 = new Square(150, 461, 20);
-            Square square3 = new Square(150, 482, 20);
-            Square square4 = new Square(150, 503, 20);
+            // Square square1 = new Square(150, 440, 20); // test restart
+            // Square square2 = new Square(150, 461, 20);
+            // Square square3 = new Square(150, 482, 20);
+            // Square square4 = new Square(150, 503, 20);
 
-            // Square square1 = new Square(75, 715, 20);
+            // Square square1 = new Square(75, 715, 20); //unused
             // Square square2 = new Square(75, 680, 20);
             // Square square3 = new Square(75, 645, 20);
             // Square square4 = new Square(75, 610, 20);
 
-            // Square square1 = new Square(300, 700, 20);
-            // Square square2 = new Square(300, 650, 20);
-            // Square square3 = new Square(300, 600, 20);
-            // Square square4 = new Square(300, 550, 20);
+            Square square1 = new Square(300, 700, 20);
+            Square square2 = new Square(300, 650, 20);
+            Square square3 = new Square(300, 600, 20);
+            Square square4 = new Square(300, 550, 20);
 
             square1.setSquareColor(Color.GREEN);
+            //square1.setStrokeColor(Color.GREEN);
             square2.setSquareColor(Color.CYAN);
+            //square2.setStrokeColor(Color.CYAN);
             square3.setSquareColor(Color.RED);
+            //square3.setStrokeColor(Color.RED);
             square4.setSquareColor(Color.ORANGE);
+            //square4.setStrokeColor(Color.ORANGE);
 
             squares.clear();
             squares.add(square1);
             squares.add(square2);
             squares.add(square3);
             squares.add(square4);
-
+            
+            for (Square square : squares) {
+                //square.setStrokeColor(Color.TRANSLUCENT);
+                square.setStrokeWidth(1.7);
+            }
             squareGroup.add(square1.getSquare());
             squareGroup.add(square2.getSquare());
             squareGroup.add(square3.getSquare());
@@ -106,6 +125,9 @@ public class SquareGame {
             canvas.add(squareGroup);
 
             map2Start = true;
+
+            map2.getRestartButton().onClick(() -> restartGame());
+            map2.getQuitButton().onClick(() -> System.exit(0));
         });
 
         canvas.animate(() -> {
@@ -141,6 +163,7 @@ public class SquareGame {
             if (squares.size() == 0 && currentMap.equals(map1)) {// Check if all squares are finished
                 allFinished = true;
                 animationRunning = false; // Stops animation loop
+                canvas.removeAll();
                 canvas.add(restart);
                 restart.restartGame(true);
 
@@ -148,12 +171,17 @@ public class SquareGame {
             else if (squares.size() <= 1 && currentMap.equals(map2)) {// Check if 1 square left
                 allFinished = true;
                 animationRunning = false; // Stops animation loop
+                canvas.removeAll();
                 canvas.add(restart);
                 restart.restartGame(true);
 
-            }restart.getRestartButton().onClick(() -> restartGame());
-        restart.getQuitButton().onClick(() -> System.exit(0));
+            }
+
+            restart.getRestartButton().onClick(() -> restartGame());
+            restart.getQuitButton().onClick(() -> System.exit(0));
         });
+
+        menu.getQuitButton().onClick(() -> System.exit(0));
     }
 
     public static void restartGame() {// resets everything and removes everything from the canvas before restarting the game.

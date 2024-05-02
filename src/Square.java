@@ -177,6 +177,14 @@ public class Square {
         square.setFillColor(color);
     }
 
+    public void setStrokeColor(Color color) {
+        square.setStrokeColor(color);
+    }
+
+    public void setStrokeWidth(double size) {
+        square.setStrokeWidth(size);
+    }
+
     public Point getCenter() {
         return square.getCenter();
     }
