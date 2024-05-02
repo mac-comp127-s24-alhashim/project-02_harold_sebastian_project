@@ -18,6 +18,7 @@ public class SquareGame {
     private static boolean animationRunning = true;
     public static List<Square> squares = new ArrayList<>();
     public static GraphicsGroup squareGroup = new GraphicsGroup();
+    private Map currentMap = null;
     private static boolean map1Start = false;
     private static boolean map2Start = false;
     public static List<Square> finishedSquares = new ArrayList<Square>();
@@ -33,23 +34,25 @@ public class SquareGame {
 
         menu.getRace1Button().onClick(() -> {// adds the map and squares to the canvas.
             // Instantiate Map1 and set it as the current map
+
             menu.removeFromCanvas();
             map1.setupMap(canvas);
-            // Square square1 = new Square(400, 85, 20); // replace this with current squares to test the restart method
-            // Square square2 = new Square(400, 180, 20);
-            // Square square3 = new Square(400, 145, 20);
-            // Square square4 = new Square(400, 110, 20);
+            Square square1 = new Square(400, 80, 20); // replace this with current squares to test the restart method
+            Square square2 = new Square(400, 180, 20);
+            Square square3 = new Square(400, 145, 20);
+            Square square4 = new Square(400, 110, 20);
 
-            Square square1 = new Square(75, 715, 20);
-            Square square2 = new Square(75, 680, 20);
-            Square square3 = new Square(75, 645, 20);
-            Square square4 = new Square(75, 610, 20);
+            // Square square1 = new Square(75, 715, 20);
+            // Square square2 = new Square(75, 680, 20);
+            // Square square3 = new Square(75, 645, 20);
+            // Square square4 = new Square(75, 610, 20);
 
             square1.setSquareColor(Color.BLUE);
             square2.setSquareColor(Color.CYAN);
             square3.setSquareColor(Color.RED);
             square4.setSquareColor(Color.ORANGE);
 
+            squares.clear();
             squares.add(square1);
             squares.add(square2);
             squares.add(square3);
@@ -69,20 +72,28 @@ public class SquareGame {
             // Instantiate Map2 and set it as the current map
             menu.removeFromCanvas();
             map2.setupMap(canvas);
-//             Square square1 = new Square(75, 715, 20);
-//             Square square2 = new Square(75, 680, 20);
-//             Square square3 = new Square(75, 645, 20);
-//             Square square4 = new Square(75, 610, 20);
-            Square square1 = new Square(300, 700, 20);
-            Square square2 = new Square(300, 650, 20);
-            Square square3 = new Square(300, 600, 20);
-            Square square4 = new Square(300, 550, 20);
+
+            Square square1 = new Square(150, 440, 20); // test restart
+            Square square2 = new Square(150, 461, 20);
+            Square square3 = new Square(150, 482, 20);
+            Square square4 = new Square(150, 503, 20);
+
+            // Square square1 = new Square(75, 715, 20);
+            // Square square2 = new Square(75, 680, 20);
+            // Square square3 = new Square(75, 645, 20);
+            // Square square4 = new Square(75, 610, 20);
+
+            // Square square1 = new Square(300, 700, 20);
+            // Square square2 = new Square(300, 650, 20);
+            // Square square3 = new Square(300, 600, 20);
+            // Square square4 = new Square(300, 550, 20);
 
             square1.setSquareColor(Color.GREEN);
             square2.setSquareColor(Color.CYAN);
             square3.setSquareColor(Color.RED);
             square4.setSquareColor(Color.ORANGE);
 
+            squares.clear();
             squares.add(square1);
             squares.add(square2);
             squares.add(square3);
@@ -112,7 +123,6 @@ public class SquareGame {
                     Square square = iterator.next();
                     if (!square.finished) {
                         square.move();
-                        Map currentMap = null;
                         if (map1Start == true) {
                             currentMap = map1;
                         }
@@ -128,7 +138,14 @@ public class SquareGame {
                     }
                 }
             }
-            if (squares.size() == 0) {// Check if all squares are finished
+            if (squares.size() == 0 && currentMap.equals(map1)) {// Check if all squares are finished
+                allFinished = true;
+                animationRunning = false; // Stops animation loop
+                canvas.add(restart);
+                restart.restartGame(true);
+
+            }
+            else if (squares.size() <= 1 && currentMap.equals(map2)) {// Check if 1 square left
                 allFinished = true;
                 animationRunning = false; // Stops animation loop
                 canvas.add(restart);
