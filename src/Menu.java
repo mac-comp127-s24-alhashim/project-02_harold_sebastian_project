@@ -1,10 +1,11 @@
 import java.awt.Color;
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
-import edu.macalester.graphics.TextAlignment;
 import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Rectangle;
+import edu.macalester.graphics.TextAlignment;
 import edu.macalester.graphics.ui.Button;
 
 /**
@@ -56,7 +57,7 @@ public class Menu extends GraphicsGroup {
         text.setCenter(BORDER_WIDTH + MENU_WIDTH / 2, BORDER_HEIGHT + MENU_HEIGHT * 0.2);
         add(text);
 
-        text = new GraphicsText("Welcome to Square Survival!\n\nSelect a course type:");
+        text = new GraphicsText("Welcome to Square Survival!\n\nSelect a Game Mode:");
         text.setFont(FontStyle.BOLD, CANVAS_HEIGHT * 0.02);
         text.setAlignment(TextAlignment.CENTER);
         text.setCenter(BORDER_WIDTH + MENU_WIDTH / 2, BORDER_HEIGHT + MENU_HEIGHT * 0.4);
