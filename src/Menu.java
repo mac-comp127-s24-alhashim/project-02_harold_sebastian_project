@@ -8,7 +8,12 @@ import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.ui.Button;
 
-public class Menu extends GraphicsGroup {// this menu has two buttons that will display the two game modes to choose from, the menu is called when the main game is started.
+/**
+ * Represents the main menu of the Square Survival game.
+ * Provides buttons to start different game modes and options to quit the game.
+ * Extends GraphicsGroup to organize graphical elements.
+ */
+public class Menu extends GraphicsGroup {
     private static final int MENU_WIDTH = 525;
     private static final int MENU_HEIGHT = 725;
     private static final int CANVAS_WIDTH = 600;
@@ -22,12 +27,20 @@ public class Menu extends GraphicsGroup {// this menu has two buttons that will 
     private GraphicsText text;
     private boolean isMenu;
 
-    public Menu(boolean isMenu) { // makes the menu into a boolean which can be removed when stating if its true or false.
+    /**
+     * Constructs a Menu object.
+     * @param isMenu Indicates whether the menu is displayed or not.
+     */
+    public Menu(boolean isMenu) {
         this.isMenu = isMenu;
         setupMenu(isMenu);
     }
 
-    public void setupMenu(boolean ifTrue)  {// creates the first menu and adds buttons for starting the two different game modes
+    /**
+     * Sets up the graphical elements and buttons for the menu.
+     * @param ifTrue Indicates whether the menu is displayed or not.
+     */
+    public void setupMenu(boolean ifTrue) {
         Rectangle overlay = new Rectangle(-300, -300, CANVAS_WIDTH + 300, CANVAS_HEIGHT + 300);
         overlay.setFillColor(Color.GRAY); // Grey opaque overlay
         overlay.setStrokeColor(new Color(100, 100, 100, 150));
@@ -69,22 +82,41 @@ public class Menu extends GraphicsGroup {// this menu has two buttons that will 
         add(text);
     }
 
+    /**
+     * Retrieves the button for starting the race game mode.
+     * @return The race1Button.
+     */
     public Button getRace1Button() {
         return race1Button;
     }
 
+    /**
+     * Retrieves the button for starting the death match game mode.
+     * @return The dm1Button.
+     */
     public Button getDM1Button() {
         return dm1Button;
     }
     
+    /**
+     * Retrieves the button for quitting the game.
+     * @return The quitButton.
+     */
     public Button getQuitButton() {
         return quitButton;
     }
 
+    /**
+     * Checks if the menu is displayed.
+     * @return True if the menu is displayed, false otherwise.
+     */
     public boolean isMenu() {
         return isMenu;
     }
 
+    /**
+     * Removes the menu from the canvas.
+     */
     public void removeFromCanvas() {
         CanvasWindow canvas = getCanvas();
         if (canvas != null) {

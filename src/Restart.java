@@ -6,7 +6,12 @@ import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.ui.Button;
 
-public class Restart extends GraphicsGroup{ // handles the restart menu, its given a boolean parameter wether to show the restart screen when the game is over.
+/**
+ * Represents the restart menu displayed when the game is over.
+ * Provides buttons to restart the game or quit.
+ * Extends GraphicsGroup to organize graphical elements.
+ */
+public class Restart extends GraphicsGroup {
     private static final int MENU_WIDTH = 525;
     private static final int MENU_HEIGHT = 725;
     private static final int CANVAS_WIDTH = 600;
@@ -18,12 +23,20 @@ public class Restart extends GraphicsGroup{ // handles the restart menu, its giv
     private GraphicsText title;
     private boolean isRestartMenu;
 
-    public Restart(boolean isRestartMenu) {// makes restart into a boolean to control its visibility. true = visible, false = not visible.
+    /**
+     * Constructs a Restart object.
+     * @param isRestartMenu Indicates whether the restart menu is displayed or not.
+     */
+    public Restart(boolean isRestartMenu) {
         this.isRestartMenu = isRestartMenu;
         restartGame(isRestartMenu);
     }
-    public void restartGame(boolean isRestartMenu) {// creates the graphics objects on the canvas when called by the main 
 
+    /**
+     * Sets up the graphical elements and buttons for the restart menu.
+     * @param isRestartMenu Indicates whether the restart menu is displayed or not.
+     */
+    public void restartGame(boolean isRestartMenu) {
         Rectangle overlay = new Rectangle(-300, -300, CANVAS_WIDTH + 300, CANVAS_HEIGHT + 300);
         overlay.setFillColor(Color.GRAY); // Grey opaque overlay
         overlay.setStrokeColor(new Color(100, 100, 100, 150));
@@ -49,18 +62,33 @@ public class Restart extends GraphicsGroup{ // handles the restart menu, its giv
         add(quitButton);
     }
     
+    /**
+     * Retrieves the restart button.
+     * @return The restartButton.
+     */
     public Button getRestartButton() {
         return restartButton;
     }
 
+    /**
+     * Retrieves the quit button.
+     * @return The quitButton.
+     */
     public Button getQuitButton() {
         return quitButton;
     }
 
+    /**
+     * Checks if the restart menu is displayed.
+     * @return True if the restart menu is displayed, false otherwise.
+     */
     public boolean isRestartMenu() {
         return isRestartMenu;
     }
 
+    /**
+     * Removes the restart menu from the canvas.
+     */
     public void removeFromCanvas() {
         CanvasWindow canvas = getCanvas();
         if (canvas != null) {

@@ -3,10 +3,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
 
+/**
+ * The main class for the Square Survival game.
+ * Handles game initialization, map selection, square movement, collision detection, and game restart.
+ * Contains methods for managing game state and updating the canvas.
+ *Collaborators: [ https://github.com/HaroldPonce22, https://github.com/sstefanowicz, https://github.com/Zander-L ]
+
+ */
 public class SquareGame {
     private static final int CANVAS_WIDTH = 600;
     private static final int CANVAS_HEIGHT = 800;
@@ -25,7 +31,10 @@ public class SquareGame {
     private static boolean map1Start = false;
     private static boolean map2Start = false;
 
-    public SquareGame() {// starts the game with the menu screen, there are buttons for the game modes, for the end of the game theres buttons to quit and to restart.
+    /**
+     * Constructs the SquareGame object and initializes the game.
+     */
+    public SquareGame() {
         map1 = new Map1();
         map2 = new Map2();
         colors = List.of(new Color(255, 0, 128), new Color(255, 24, 0), new Color(255, 91, 0), new Color(255, 151, 0), new Color(255, 230, 0), new Color(0, 255, 230), new Color(0, 201, 255), new Color(0, 116, 255));
@@ -35,19 +44,15 @@ public class SquareGame {
         restart = new Restart(false); // This creates the restart menu
         canvas.add(menu);
         
-        menu.getRace1Button().onClick(() -> {// adds the map and squares to the canvas.
-            // Instantiate Map1 and set it as the current map
-
+        // Race1 button event
+        menu.getRace1Button().onClick(() -> {
             menu.removeFromCanvas();
             map1.setupMap(canvas);
+            // Add squares to the canvas
             Square square1 = new Square(75, 715, 20);
             Square square2 = new Square(75, 680, 20);
             Square square3 = new Square(75, 645, 20);
             Square square4 = new Square(75, 610, 20);
-        //     Square square1 = new Square(400, 75, 20); // test restart
-        //     Square square2 = new Square(400, 100, 20);
-        //     Square square3 = new Square(400, 115, 20);
-        //     Square square4 = new Square(400, 125, 20);
 
             finishedSquares.clear();
             squares.clear();
@@ -55,21 +60,22 @@ public class SquareGame {
             squares.add(square2);
             squares.add(square3);
             squares.add(square4);
-            
+
+            // Set colors for squares
             for (Square square : squares) {
                 Random random = new Random();
                 Color color = colors.get(random.nextInt(8));
                 square.setSquareColor(color);
                 for (Square otherSquare : squares) {
-                    while (square.equals(otherSquare) == false && color.equals(otherSquare.getSquareColor())) {
+                    while (!square.equals(otherSquare) && color.equals(otherSquare.getSquareColor())) {
                         color = colors.get(random.nextInt(8));
                         square.setSquareColor(color);
                     }
                 }
                 square.setStrokeWidth(1.7);
-                //square.setStrokeColor(Color.TRANSLUCENT);
             }
 
+            // Add squares to the canvas
             squareGroup.add(square1.getSquare());
             squareGroup.add(square2.getSquare());
             squareGroup.add(square3.getSquare());
@@ -78,16 +84,17 @@ public class SquareGame {
 
             map1Start = true;
 
+            // Restart and quit button events
             map1.getRestartButton().onClick(() -> restartGame());
             map1.getQuitButton().onClick(() -> System.exit(0));
         });
 
-        // Maps button event
-        menu.getDM1Button().onClick(() -> {// when the button is clicked,  map2 and the squares are added to the canvas.
-            // Instantiate Map2 and set it as the current map
+        // Death Match button event
+        menu.getDM1Button().onClick(() -> {
             menu.removeFromCanvas();
             map2.setupMap(canvas);
             
+            // Add squares to the canvas
             Square square1 = new Square(300, 700, 20);
             Square square2 = new Square(300, 650, 20);
             Square square3 = new Square(300, 600, 20);
@@ -100,20 +107,21 @@ public class SquareGame {
             squares.add(square3);
             squares.add(square4);
             
+            // Set colors for squares
             for (Square square : squares) {
                 Random random = new Random();
                 Color color = colors.get(random.nextInt(8));
                 square.setSquareColor(color);
                 for (Square otherSquare : squares) {
-                    while (square.equals(otherSquare) == false && color.equals(otherSquare.getSquareColor())) {
+                    while (!square.equals(otherSquare) && color.equals(otherSquare.getSquareColor())) {
                         color = colors.get(random.nextInt(8));
                         square.setSquareColor(color);
                     }
                 }
                 square.setStrokeWidth(1.7);
-                //square.setStrokeColor(Color.TRANSLUCENT);
             }
 
+            // Add squares to the canvas
             squareGroup.add(square1.getSquare());
             squareGroup.add(square2.getSquare());
             squareGroup.add(square3.getSquare());
@@ -122,10 +130,12 @@ public class SquareGame {
 
             map2Start = true;
 
+            // Restart and quit button events
             map2.getRestartButton().onClick(() -> restartGame());
             map2.getQuitButton().onClick(() -> System.exit(0));
         });
 
+        // Animation loop
         canvas.animate(() -> {
             if (!animationRunning) {
                 return;
@@ -134,7 +144,6 @@ public class SquareGame {
                 return;
             }
 
-            //System.out.println("Number of squares: " + squares.size());
             if (allFinished) {
                 Iterator<Square> iterator = squares.iterator();
                 while (iterator.hasNext()) {
@@ -163,7 +172,6 @@ public class SquareGame {
                 pause(1000);
                 canvas.add(restart);
                 restart.restartGame(true);
-
             }
             else if (squares.size() <= 1 && currentMap.equals(map2)) {// Check if 1 square left
                 allFinished = true;
@@ -172,7 +180,6 @@ public class SquareGame {
                 pause(1000);
                 canvas.add(restart);
                 restart.restartGame(true);
-
             }
 
             restart.getRestartButton().onClick(() -> restartGame());
@@ -182,7 +189,10 @@ public class SquareGame {
         menu.getQuitButton().onClick(() -> System.exit(0));
     }
 
-    public static void restartGame() {// resets everything and removes everything from the canvas before restarting the game.
+    /**
+     * Restarts the game by resetting game state and removing elements from the canvas.
+     */
+    public static void restartGame() {
         squareGroup.removeAll();
         map1Start = false;
         map2Start = false;
@@ -191,13 +201,22 @@ public class SquareGame {
         animationRunning = true;
     }
 
+    /**
+     * Pauses the game for the specified duration.
+     * @param milliseconds The duration to pause in milliseconds.
+     */
     public void pause(double milliseconds) {
-    try {
-        Thread.sleep((long) milliseconds);
-    } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
+        try {
+            Thread.sleep((long) milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
-}
+
+    /**
+     * The entry point of the SquareGame application.
+     * @param args The command-line arguments.
+     */
     public static void main(String[] args) {
         new SquareGame();
     }
