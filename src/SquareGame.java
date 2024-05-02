@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsGroup;
@@ -14,18 +15,20 @@ public class SquareGame {
     private static Restart restart;
     private static Map1 map1;
     private static Map2 map2;
+    private static Map currentMap = null;
     private static boolean allFinished = true;
     private static boolean animationRunning = true;
     public static List<Square> squares = new ArrayList<>();
+    private static List<Color> colors;
+    public static List<Square> finishedSquares = new ArrayList<Square>();
     public static GraphicsGroup squareGroup = new GraphicsGroup();
-    private Map currentMap = null;
     private static boolean map1Start = false;
     private static boolean map2Start = false;
-    public static List<Square> finishedSquares = new ArrayList<Square>();
 
     public SquareGame() {// starts the game with the menu screen, there are buttons for the game modes, for the end of the game theres buttons to quit and to restart.
         map1 = new Map1();
         map2 = new Map2();
+        colors = List.of(new Color(255, 0, 128), new Color(255, 24, 0), new Color(255, 91, 0), new Color(255, 151, 0), new Color(255, 230, 0), new Color(0, 255, 230), new Color(0, 201, 255), new Color(0, 116, 255));
         canvas = new CanvasWindow("Square Survival!!!", CANVAS_WIDTH, CANVAS_HEIGHT);
         canvas.setBackground(Color.LIGHT_GRAY);
         menu = new Menu(true); // This creates the main menu
@@ -47,15 +50,6 @@ public class SquareGame {
             Square square3 = new Square(75, 645, 20);
             Square square4 = new Square(75, 610, 20);
 
-            square1.setSquareColor(Color.BLUE);
-            //square1.setStrokeColor(Color.BLUE);
-            square2.setSquareColor(Color.CYAN);
-            //square2.setStrokeColor(Color.CYAN);
-            square3.setSquareColor(Color.RED);
-            //square3.setStrokeColor(Color.RED);
-            square4.setSquareColor(Color.ORANGE);
-            //square4.setStrokeColor(Color.ORANGE);
-
             finishedSquares.clear();
             squares.clear();
             squares.add(square1);
@@ -64,7 +58,17 @@ public class SquareGame {
             squares.add(square4);
             
             for (Square square : squares) {
+                Random random = new Random();
+                Color color = colors.get(random.nextInt(8));
+                square.setSquareColor(color);
+                for (Square otherSquare : squares) {
+                    while (square.equals(otherSquare) == false && color.equals(otherSquare.getSquareColor())) {
+                        color = colors.get(random.nextInt(8));
+                        square.setSquareColor(color);
+                    }
+                }
                 square.setStrokeWidth(1.7);
+                //square.setStrokeColor(Color.TRANSLUCENT);
             }
 
             squareGroup.add(square1.getSquare());
@@ -100,15 +104,6 @@ public class SquareGame {
             Square square3 = new Square(300, 600, 20);
             Square square4 = new Square(300, 550, 20);
 
-            square1.setSquareColor(Color.GREEN);
-            //square1.setStrokeColor(Color.GREEN);
-            square2.setSquareColor(Color.CYAN);
-            //square2.setStrokeColor(Color.CYAN);
-            square3.setSquareColor(Color.RED);
-            //square3.setStrokeColor(Color.RED);
-            square4.setSquareColor(Color.ORANGE);
-            //square4.setStrokeColor(Color.ORANGE);
-
             finishedSquares.clear();
             squares.clear();
             squares.add(square1);
@@ -117,9 +112,19 @@ public class SquareGame {
             squares.add(square4);
             
             for (Square square : squares) {
-                //square.setStrokeColor(Color.TRANSLUCENT);
+                Random random = new Random();
+                Color color = colors.get(random.nextInt(8));
+                square.setSquareColor(color);
+                for (Square otherSquare : squares) {
+                    while (square.equals(otherSquare) == false && color.equals(otherSquare.getSquareColor())) {
+                        color = colors.get(random.nextInt(8));
+                        square.setSquareColor(color);
+                    }
+                }
                 square.setStrokeWidth(1.7);
+                //square.setStrokeColor(Color.TRANSLUCENT);
             }
+
             squareGroup.add(square1.getSquare());
             squareGroup.add(square2.getSquare());
             squareGroup.add(square3.getSquare());

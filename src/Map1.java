@@ -55,8 +55,8 @@ public class Map1 extends Map {
         walls.add(wall10);
 
         Rectangle finish = new Rectangle(422.5, 53.5, 5, 158);
-        finish.setStrokeColor(Color.red);
-        finish.setFillColor(Color.red);
+        finish.setStrokeColor(Color.green);
+        finish.setFillColor(Color.green);
         finishLine.add(finish);
 
         Rectangle zone = new Rectangle(427.5, 53.5, 120, 158);

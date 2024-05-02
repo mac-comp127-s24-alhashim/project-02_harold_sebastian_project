@@ -176,6 +176,10 @@ public class Square {
     public void setSquareColor(Color color) {
         square.setFillColor(color);
     }
+    
+    public Color getSquareColor() {
+        return (Color) square.getFillColor();
+    }
 
     public void setStrokeColor(Color color) {
         square.setStrokeColor(color);
