@@ -26,10 +26,10 @@ public class WallCollision {
 
         if (leftLine != null || rightLine != null || topLine != null || bottomLine != null) {
             if (leftLine != null || rightLine != null) {
-                square.speedX = -1.01 * square.speedX;
+                square.speedX = -1.00 * square.speedX;
             }
             if (topLine != null || bottomLine != null) {
-                square.speedY = -1.01 * square.speedY;
+                square.speedY = -1.00 * square.speedY;
             }
         }
     }
