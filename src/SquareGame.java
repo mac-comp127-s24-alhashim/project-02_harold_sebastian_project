@@ -56,6 +56,7 @@ public class SquareGame {
             square4.setSquareColor(Color.ORANGE);
             //square4.setStrokeColor(Color.ORANGE);
 
+            finishedSquares.clear();
             squares.clear();
             squares.add(square1);
             squares.add(square2);
@@ -108,6 +109,7 @@ public class SquareGame {
             square4.setSquareColor(Color.ORANGE);
             //square4.setStrokeColor(Color.ORANGE);
 
+            finishedSquares.clear();
             squares.clear();
             squares.add(square1);
             squares.add(square2);
